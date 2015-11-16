@@ -1,7 +1,7 @@
 <div id="admin_wrap">
 
   <h2>АДМИНИСТРАТОРСКИ ПАНЕЛ</h2>
-  <img src="../../assets/img/heading_sep.png" alt="Separator"><br/>
+  <img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator"><br/>
 
   <a href="messages">
     <div class="box">

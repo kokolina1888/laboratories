@@ -7,7 +7,7 @@
 		<div class="messages">
 			<div class="msg-heading">
 				<span class="content-sprite messages-img"></span><p class="p-heading">Важни съобщения</p>
-				<img src="../../assets/img/content-separator.png" alt="Separator" class="heading-separator">
+				<img src="<?php echo base_url('assets/img/content-separator.png');?>" alt="Separator" class="heading-separator">
 			</div>
 
 			<?php
@@ -30,7 +30,7 @@
 		<div class="organizers">
 			<div class="org-heading">
 				<span class="content-sprite organizers-img"></span><p class="p-heading">Организатори</p>
-				<img src="<?php echo base_url().'assets/img/content-separator.png';?>" alt="Separator" class="heading-separator">
+				<img src="<?php echo base_url('assets/img/content-separator.png');?>" alt="Separator" class="heading-separator">
 			</div>
 			<div class="org-content">
 				<h2>Българска Национална Система за Външна Оценка на Качеството в клиничните лаборатории</h2>

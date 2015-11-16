@@ -9,8 +9,7 @@ echo form_open('verifylogin', $attributes);
 
 <div class="form-group">
 	<?php 	
-//
-	//SELECT PROGRAMM TYPE
+
 	echo form_label('Потребител');
 
 	$data_username = array(
@@ -27,8 +26,6 @@ echo form_open('verifylogin', $attributes);
 </div>
 <div class="form-group">
 	<?php 	
-//
-	//SELECT PROGRAMM TYPE
 	echo form_label('Парола');
 
 	$data_password = array(

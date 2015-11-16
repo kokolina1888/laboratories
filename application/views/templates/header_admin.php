@@ -26,7 +26,7 @@
 			<a href="#" class="fa fa-linkedin"></a>
 			<a href="#" class="fa fa-tumblr"></a>
 			<div class="div-button">
-			<a href="#login-bar" class="button">+ Вход за участници</a>
+			<a href="<?php echo base_url('index.php/home_admin/logout')?>" class="button">Изход</a>
 
 			</div>
 		</span>

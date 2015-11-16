@@ -7,6 +7,7 @@ class Home extends CI_Controller {
 		$data['dynamic_view'] = 'home/index';
 		$data['title'] = 'Начало';
 		$this->load->view('templates/main_template', $data);
+		
 	} 
 
 	// End homepage

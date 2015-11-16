@@ -26,7 +26,7 @@
 			<a href="#" class="fa fa-linkedin"></a>
 			<a href="#" class="fa fa-tumblr"></a>
 			<div class="div-button">
-			<a href="#login-bar" class="button">+ Вход за участници</a>
+			<a href="#login-bar" class="button">+ Вход</a>
 
 			</div>
 		</span>
@@ -35,7 +35,7 @@
 <!--  .............................. START HEADER .............................. -->
 
 	<div class="header">
-		<a href="index.php"><img src="<?php echo base_url('');?>assets/img/logo.png" alt="Logo" class="logo"></a>
+		<a href="index.php"><img src="<?php echo base_url('assets/img/logo.png');?>" alt="Logo" class="logo"></a>
 
 		<div class="header-right">
 			<span class="bank-account">
@@ -58,7 +58,7 @@
 		    <li><a href="provejdane">Провеждане</a></li>
 		    <li><a href="programms">Програми</a></li>
 		    <li>
-		    <a href="#login-bar" class="entry"><i class="fa fa-sign-in"></i>Вход за участнци</a></li>
+		    <a href="#login-bar" class="entry"><i class="fa fa-sign-in"></i>Вход</a></li>
 		</ul>
 	</div>
 
@@ -67,5 +67,5 @@
 
 	<div class="banner">
 		<h2>Българско дружество за осигуряване<br/>на качеството в медицинската лаборатория</h2>
-		<img src="<?php echo base_url('');?>assets/img/separator-img.png" alt="Separator">
+		<img src="<?php echo base_url('assets/img/separator-img.png');?>" alt="Separator">
 	</div>

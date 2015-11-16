@@ -1,3 +1,5 @@
+<!-- MEANT TO BE EQUAL TO COMPLEX INFO FORM-->
+
 <div id="admin_p_request">
 
 	<h2>Заявки за програми</h2>

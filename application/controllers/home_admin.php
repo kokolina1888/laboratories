@@ -8,13 +8,19 @@ class Home_admin extends CI_Controller {
 	}
 
 	public function index()
-	{
+	{		
+		
 
 		if ($this->session->userdata('logged_in')) 
 		{
 			$session_data = $this->session->userdata('logged_in');
 			$data['username'] = $session_data['username'];
-			$this->load->view('admin/home_admin_view', $data);
+
+			$data['dynamic_view'] = 'admin/admin';
+			$data['title_admin'] = 'администратор';
+			$this->load->view('templates/main_template_admin', $data);
+		
+			
 		}
 		else
 		{
@@ -28,8 +34,7 @@ class Home_admin extends CI_Controller {
 	{
 		$this->session->unset_userdata('logged_in');
 
-		//
-		redirect('login');
+		redirect('home');
 
 	}//end of logout
 

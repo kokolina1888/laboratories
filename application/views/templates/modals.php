@@ -10,7 +10,7 @@
 
         <?php
           $attributes = array('class' => 'messages_form');
-          echo form_open('admin/messages', $attributes);
+          echo form_open('verifylogin/index', $attributes);
 
           $data = array(
             'name'        => 'username',
@@ -41,6 +41,13 @@
         </form>
       </div>
     </div>
+
+    <!-- -----------LOG OUT ------------- -->
+
+
+     <div id="login-bar" class="modalDialog login">
+     
+     </div>
 
     <!--  .............. BANK .............. -->
 
