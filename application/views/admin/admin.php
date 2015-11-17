@@ -3,7 +3,7 @@
   <h2>АДМИНИСТРАТОРСКИ ПАНЕЛ</h2>
   <img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator"><br/>
 
-  <a href="messages">
+  <a href="<?php echo base_url('admin/messages'); ?>">
     <div class="box">
       <span class="icons message_icon"></span>
       <h2>СЪОБЩЕНИЯ</h2>
@@ -11,7 +11,7 @@
     </div>
   </a>
 
-  <a href="add">
+  <a href="<?php echo base_url('admin/add'); ?>">
     <div class="box">
       <span class="icons add_icon"></span>
       <h2>ДОБАВИ</h2>
@@ -19,7 +19,7 @@
     </div>
   </a>
 
-  <a href="programs_requests">
+  <a href="<?php echo base_url('admin/programs_requests')?>">
     <div class="box devices">
       <span class="icons devices_icon"></span>
       <h2>ЗАЯВКИ ЗА ПРОГРАМИ</h2>

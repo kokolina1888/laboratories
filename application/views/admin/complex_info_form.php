@@ -1,65 +1,49 @@
 <?php if (! defined('BASEPATH')) exit ('No direct script access allowed');
 
-echo form_open('admin/add_comlex_info');
+
+echo form_open('admin/add_complex_info');
 
 //SELECT USER
 
+echo form_label('Изберете лаборатория');
+
 foreach ($all_users as $key => $value) {
-		$options[$value['user_id']] = $value['user'];	
-			
-			}
+	$options_user[$value['user_id']] = $value['username'];	
 
-			//ERROR TO BE DISPLAYED??
-	echo form_error('');
+}
 
-	//VALUE TO BE SET???
-	echo form_dropdown('user_id', $options, ?);
+	//VALUE SET
+echo "<p>";
+
+$user_value = $this->input->post('username');
+
+echo form_dropdown('username', $options_user, set_value('username', ( ( !empty($user_value) ) ? "$user_value" : 0 ) ));
+
+echo "</p>";
+
+/*echo "<pre>";
+
+//var_dump($all_users);
+var_dump($complex_info);
+
+echo "</pre>";*/
+
+//SELECT PROGRAMM TYPE
+echo form_label('Изберете програма');
+
+foreach ($complex_info as $key => $value) {
+	$options_programm_type[$value['programm_type_id']] = $value['programm_type'];				
+}
 
 
-//SELECT PROGRAMM DATE
+	//VALUE SET
+echo "<p>";
 
-	foreach ($all_programm_dates as $key => $value) {
-		$options[$value['?']] = $value['?'];	
-			
-			}
+$programm_programm_type = $this->input->post('programm_type');
 
-			//ERROR TO BE DISPLAYED??
-	echo form_error('');
+echo form_dropdown('programm_type', $options_programm_type, ( ( !empty($programm_programm_type) ) ? "$programm_programm_type" : 0 ) );
 
-	//VALUE TO BE SET???
-	echo form_dropdown('programm_date', $options, ?);
-
-//SELECT PROBE NUMBER THAT HAS BEEN SENT TO THE USER
-
-	foreach ($all_probe_numbers as $key => $value) {
-		$options[$value['?']] = $value['?'];	
-			
-			}
-
-			//ERROR TO BE DISPLAYED??
-	echo form_error('');
-
-	//VALUE TO BE SET???
-	echo form_dropdown('?', $options, ?);
-
-//SELECT THE TESTS TO BE PERFORMED BY THE USER, CHECKBOX
-
-	/*$data = array(
-    'name'        => 'newsletter',
-    'id'          => 'newsletter',
-    'value'       => 'accept',
-    'checked'     => TRUE,
-    'style'       => 'margin:10px',
-    );
-
-echo form_checkbox($data);
-
-// Would produce:
-
-<input type="checkbox" name="newsletter" id="newsletter" value="accept" checked="checked" style="margin:10px" />*/
-
-записа в базата данни ще става с масив?, защото от чекбокса ще имам няколко стойност за тестовете
-
+echo "</p>";
 
 
 //SUBMIT THE FORM
@@ -69,7 +53,7 @@ $complex_btn = array(
 	'value' => 'Въведи'
 	);
 
-echo form_submit($test_btn);
+echo form_submit($complex_btn);
 
 echo form_close();
 

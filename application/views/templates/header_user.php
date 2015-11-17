@@ -35,7 +35,7 @@
 <!--  .............................. START HEADER .............................. -->
 
 	<div class="header">
-		<a href="index.php"><img src="<?php echo base_url('assets/img/logo.png');?>" alt="Logo" class="logo"></a>
+		<span><img src="<?php echo base_url('assets/img/logo.png');?>" alt="Logo" class="logo"></span>
 
 		<div class="header-right">
 			<span class="bank-account">

@@ -26,8 +26,11 @@ class Admin extends CI_Controller {
 
 	public function programs_requests()
 	{
-		$data['dynamic_view'] = 'admin/programs_requests';
+		$data['dynamic_view'] = 'admin/complex_info_form';
 		$data['title_admin'] = 'Програми';
+		$data['complex_info'] = $this->user_model->get_complex_info();
+		$data['all_users'] = $this->user_model->get_all_users();
+		
 		$this->load->view('templates/main_template_admin', $data);
 	}//programs_requests
 
@@ -127,22 +130,35 @@ class Admin extends CI_Controller {
 			$this->show_all_users();
 		}//end of delete user
 
-	public function add_complex_info_form() 
-	{
-		//selects programm_date for users and checks what test the user will perfom
-
-		$this->load->library('form_validation');
-
-		$this->load->view('admin/complex_info_form');
-
-
-	}//end of add_complex_info_form
-
+	
 
 	public function add_complex_info()
 	{
+		
+		$user_id = $this->input->post('username');
+		$programm_type_id = $this->input->post('programm_type');
 
-		от модела инфо за
+		$this->user_model->add_user_programm();
+
+		$data['user_id'] = $user_id;
+		$data['programm_type_id'] = $programm_type_id;
+
+		$data['user_data'] = $this->user_model->get_user($user_id);
+
+		$data['additional_complex_info'] = $this->user_model->get_additional_info($programm_type_id);
+
+		$data['dynamic_view'] = 'admin/aditional_complex_info_form';
+		$data['title_admin'] = 'Програми';
+		
+		
+		$this->load->view('templates/main_template_admin', $data);
+		
+
+		/*$data['dynamic_view'] = 'admin/complex_info_form';
+		$data['title_admin'] = 'Програми';
+		$this->load->view('templates/main_template_admin', $data);*/
+
+	/*	от модела инфо за
 
 		ВЪВЕДЕНИТЕ ВЕЧЕ ПОТРЕБИТЕЛИ
 
@@ -151,10 +167,14 @@ class Admin extends CI_Controller {
 		ТЕСТОВЕТЕ, КОИТО МОГАТ ДА СЕ ИЗСЛЕДВАТ ПО СЪОТВЕТНАТА ПРОГРАМА
 		СЪОТВЕТНО ТР ДА ЛОАДНЕШ МОДЕЛИТЕ ЗА user_model, programm_dates_model, test_model ЗА ДА ИЗПОЛЗВАШ ФУНКЦИИТЕ ЗА 
 		ИНФО ЗА ВСИЧКИ ПОТРЕБИТЕЛИ ПРОГРАМИ ТЕСТОВЕ ... КЪДЕТО Е УДАЧНО ИЗПОЛЗВАЙ WHERE ...
-		ДАЛИ ЩЕ ТРЯБВА JOIN? ОЩЕ В НАЧАЛОТО, ТОГАВА МОЖЕ БИ НЯМА ДА ИМА НУЖДА ОТ ЛОДВАНЕ НА ВС МОДЕЛИ?!
+		ДАЛИ ЩЕ ТРЯБВА JOIN? ОЩЕ В НАЧАЛОТО, ТОГАВА МОЖЕ БИ НЯМА ДА ИМА НУЖДА ОТ ЛОДВАНЕ НА ВС МОДЕЛИ?!*/
 
 
 	}//end add_comlex_info
+	public function aditional_complex_info()
+	{
+				echo "it is working";
+	}
 
 	public function update_complex_info()
 	{

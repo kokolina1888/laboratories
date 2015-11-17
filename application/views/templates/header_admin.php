@@ -35,7 +35,7 @@
 <!--  .............................. START HEADER .............................. -->
 
 	<div class="header">
-		<a href="index"><img src="<?php echo base_url('assets/img/logo.png');?>" alt="Logo" class="logo"></a>
+		<span><img src="<?php echo base_url('assets/img/logo.png');?>" alt="Logo" class="logo"></span>
 
 		<div class="header-right">
 			<span class="bank-account">
@@ -53,10 +53,10 @@
 
 	<div class="menu">
 		<ul>
-		    <li><a href="index">Начало</a></li>
-		    <li><a href="messages">Съобщения</a></li>
-		    <li><a href="add">Добави</a></li>
-		    <li><a href="programs_requests">Завки за програми</a></li>
+		    <li><a href="<?php echo base_url('home_admin/logout'); ?>">Изход</a></li>
+		    <li><a href="<?php echo base_url('admin/messages'); ?>">Съобщения</a></li>
+		    <li><a href="<?php echo base_url('admin/add'); ?>">Добави</a></li>
+		    <li><a href="<?php echo base_url('admin/programs_requests')?>">Завки за програми</a></li>
 		</ul>
 	</div>
 

@@ -83,6 +83,58 @@ class User_model extends CI_Model {
 
 	}//end of delete_user
 
+	public function get_complex_info()
+	{
+		//SELECT * FROM `programm_dates` JOIN 
+		//`programm_types` ON `programm_dates`.`programm_type_id` = `programm_types`.`programm_type_id` 
+		//JOIN tests ON programm_types.programm_type_id = tests.programm_type_id
+		$this->db->select('*');
+		$this->db->where('programm_dates.date_deleted', NULL);
+		$this->db->where('programm_types.date_deleted', NULL);
+		$this->db->where('tests.date_deleted', NULL);
+		$this->db->join('programm_types',  'programm_types.programm_type_id = programm_dates.programm_type_id');
+		$this->db->join('tests', 'tests.programm_type_id = programm_types.programm_type_id');
+		$query = $this->db->get('programm_dates');
+
+		$q_result = $query->result_array();
+		return $q_result;
+
+// Produces:
+// SELECT * FROM blogs
+// JOIN comments ON comments.id = blogs.id
+
+
+
+	}//end of get complex info
+
+	public function add_user_programm()
+
+	{
+		$user_programm = array (
+			'user_id' => $this->input->post('username'),
+			'programm_type_id' => $this->input->post('programm_type')
+			);
+
+		return $this->db->insert('users_programm_dates_tests_evaluations', $user_programm);
+	}
+
+	public function get_additional_info($programm_type_id) 
+	{
+
+		$this->db->select('*');
+		$this->db->where('programm_dates.date_deleted', NULL);
+		$this->db->where('programm_types.date_deleted', NULL);
+		$this->db->where('tests.date_deleted', NULL);
+		$this->db->where('programm_dates.programm_type_id', $programm_type_id);
+		$this->db->join('programm_types',  'programm_types.programm_type_id = programm_dates.programm_type_id');
+		$this->db->join('tests', 'tests.programm_type_id = programm_types.programm_type_id');
+		$query = $this->db->get('programm_dates');
+
+		$q_result = $query->result_array();
+		return $q_result;
+
+	}//end of get_additional_info
+
 
 }//end of user_model
 

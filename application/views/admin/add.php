@@ -1,7 +1,7 @@
 <div id="admin_add">
 
 	<h2>ДОБАВЕТЕ АПАРАТ</h2>
-	<img src="../../assets/img/heading_sep.png" alt="Separator"><br/>
+	<img src="<?php echo ('assets/img/heading_sep.png');?>" alt="Separator"><br/>
 
 
 	<a href="#add_dvice"><i class="fa fa-plus"></i>Нов апарат</a>
