@@ -109,6 +109,20 @@ class Tests_model extends CI_Model {
 		
 	}//end of get_unit
 
+
+	public function get_program_tests($programm_type_id) 
+	{		
+
+		$this->db->where('programm_type_id', $programm_type_id);
+		$q = $this->db->get('tests');
+
+		return $q->result_array();	
+
+		
+
+		
+	}//end of get_tests by program_type_id
+
 	public function delete_tests($id)
 	{
 

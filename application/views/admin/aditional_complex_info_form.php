@@ -3,7 +3,7 @@
 
 echo "<h2>Лаборатория ".$user_data['username']."</h2>";
 echo "<h3> Програма ". $additional_complex_info[0]['programm_type']."</h3>";
-echo form_open('admin/add_complex_info');
+echo form_open('admin/add_aditional_complex_info');
 
 //SELECT PROGRAMM DATE
 
@@ -46,3 +46,12 @@ $complex_btn = array(
 echo form_submit($complex_btn);
 
 echo form_close();
+
+
+
+//TO DO
+/*
+ДА ОБРАБОТЯ ТАЗИ ФОРМА ДА ВКАРАМ В БАЗАТА ДАТАТА ЕВЕНТУАЛНО?
+ИЛИ ПО-СКОРО ОТ КОНТРОЛЕРА ДА ОГРАНИЧА САМО ТЕСТОВЕТЕ ЗА ТАЗИ ПРОГРАМА И ТАЗИ ДАТА ДА МИ СЕ ПОЯВЯТ В СЛЕДВАЩАТА ФОРМА
+complex_info_form.php ТАМ ВЕЧЕ ЩЕ СЕ ВИЖДА ЛАБОРАТОРИЯ ПРОГРАМА, ДАТА, ЗА КОЯТО СТАВА ВЪПРОС И ЩЕ СЕ ИЗБИРАТ ТЕСТОВЕ. КАТО СЕ КОМПЛЕКТОВА ЦЯЛАТА ИНФО - ЗАПИС В БД!*/
+

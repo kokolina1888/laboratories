@@ -1,10 +1,13 @@
 <div id="admin_add">
 
-	<h2>ДОБАВЕТЕ</h2>
-	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator">
+	<h2>Прегледай</h2>
+	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator"><br/>
 
+	<!--ВИЖ КАК ДА ГИ КВЪРЖЕШ С MODALS-->
 
-	<a href="#add_dvice"><i class="fa fa-plus"></i>Нов апарат</a>
+	<a href="<?php echo base_url('admin/choose');?>"><i class="fa fa-plus"></i>Заявки за програми</a>
+
+	<a href="#add_device"><i class="fa fa-plus"></i>Нов апарат</a>
 	<a href="#add_calibrator"><i class="fa fa-tablet"></i>Нов калибратор</a>
 	<a href="#add_reagent"><i class="fa fa-flask"></i>Нов реактив</a><br/><br/><br/>
 

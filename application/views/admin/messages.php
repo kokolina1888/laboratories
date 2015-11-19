@@ -1,7 +1,7 @@
 <div id="admin_messages">
 
 	<h2>Напишете съобщение</h2>
-	<img src="<?php echo ('assets/img/heading_sep.png');?>" alt="Separator"><br/>
+	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator"><br/>
 
 
 	<?php

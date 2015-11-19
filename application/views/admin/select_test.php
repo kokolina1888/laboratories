@@ -1,23 +1,33 @@
 <?php 
+ $this->benchmark->mark('select_start');
+echo "<h1> лаборатория ".$username."</h1>";
+echo "<h3> програма " .$programm_type. "</h3>";
+echo "<h4>".$programm_date['cicle']."</h4>";
+
 
 //select tests after selected user, programm type and date
 
 //SELECT THE TESTS TO BE PERFORMED BY THE USER, CHECKBOX
-echo form_open();
+echo form_open('admin/final_complex_info');
+
+echo form_hidden('user_id', $user_id);
+echo form_hidden('programm_type_id', $programm_type_id);
+echo form_hidden('programm_date_id', $programm_date['programm_date_id']);
+
 
 echo form_label('Изберете тестове, с които ще участва лабораторията');
 echo "<p>";
 
-$count_all_tests = count($additional_complex_info);
-echo $count_all_tests;
+$count_all_tests = count($tests);
+//echo $count_all_tests;
 
 for ($i=0; $i < $count_all_tests; $i++) { 
 
-	$data[$i]['name'] = 'test';
-	$data[$i]['label'] = $additional_complex_info[$i]['test'];
-	$data[$i]['value'] = $additional_complex_info[$i]['test_id'];
+	$data[$i]['name'] = 'test[]';
+	$label[$i] = $tests[$i]['test'];
+	$data[$i]['value'] = $tests[$i]['test_id'];
 
-	echo $data[$i]['label'];
+	echo $label[$i];
 	echo form_checkbox($data[$i]);
 
 }
@@ -26,10 +36,12 @@ echo "</p>";
 
 $complex_btn = array(
 	'name' => 'submit',
-	'value' => 'Въведи'
+	'value' => 'Запиши'
 	);
 
 echo form_submit($complex_btn);
 
 echo form_close();
-
+$this->benchmark->mark('select_end');
+		echo ' views '.$this->benchmark->elapsed_time('select_start', 'select_end');
+		echo ' Usage '.$this->benchmark->memory_usage('select_start', 'select_end');

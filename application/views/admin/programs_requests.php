@@ -3,7 +3,7 @@
 <div id="admin_p_request">
 
 	<h2>Заявки за програми</h2>
-	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator"><br/>
+	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator">
 
 	<div class="selects">
 
