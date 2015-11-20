@@ -17,7 +17,7 @@
 
 <div class="wrapper">
 
-<div class="bar">
+<!--<div class="bar">
 		<p>Ние вярваме в качеството в медицинската лаборатория.</p>
 		<span class="right-bar">
 			<a href="#" class="fa fa-facebook-f"></a>
@@ -30,11 +30,11 @@
 
 			</div>
 		</span>
-	</div>
+	</div>-->
 
 <!--  .............................. START HEADER .............................. -->
 
-	<div class="header">
+	<!--<div class="header">
 		<span><img src="<?php echo base_url('assets/img/logo.png');?>" alt="Logo" class="logo"></span>
 
 		<div class="header-right">
@@ -53,10 +53,10 @@
 
 	<div class="menu">
 		<ul>
-		    <li><a href="index">Начало</a></li>
-		    <li><a href="messages">Съобщения</a></li>
-		    <li><a href="programms">Завки за програми</a></li>
-		    <li><a href="add">Добави</a></li>
+		    <li><a href="#">Начало</a></li>
+		    <li><a href="#">Въвеждане на данни</a></li>
+		    <li><a href="#">Преглед</a></li>
+		    <li><a href="<?php echo base_url('home_user/logout'); ?>">Изход</a></li>
 		</ul>
 	</div>
 
@@ -64,6 +64,6 @@
 
 
 	<div class="banner banner-admin">
-		<h2>Администраторски панел</h2>
+		<h2>Зона за участници</h2>
 		<img src="<?php echo base_url('assets/img/separator-img.png');?>" alt="Separator">
 	</div>

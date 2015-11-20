@@ -6,8 +6,6 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('user_model', '', TRUE);
-		$this->output->enable_profiler(TRUE);
-
 	}
 
 	public function index()
@@ -304,11 +302,11 @@ class Admin extends CI_Controller {
 
 	}//end of show_programs_byuser
 
-	public function check_user_programs()
+	public function check_user_programs($user_id)
 	{
-		$user_id = $this->input->get('user_id', TRUE);
-
+		
 		$data['program_requests'] = $this->user_model->get_user_programs($user_id); 
+		
 		$data['user_info'] = $this->user_model->get_user($user_id);
 
 		$data['dynamic_view'] = 'admin/update_user_program';

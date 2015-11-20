@@ -1,8 +1,5 @@
 <?php 
 
-/**
-* 
-*/
 class Test_methods extends CI_controller {
 	
 	public function __construct()

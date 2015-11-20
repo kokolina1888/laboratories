@@ -261,11 +261,13 @@ public function final_update()
 
 	for ($i=0; $i < $count_tests; $i++) { 	
 
+//RHIS IS ABOUT DB TABLE
 
-		$this->user_id   	= $this->input->post('user_id');
-		$this->programm_type_id 	= $this->input->post('programm_type_id');
-		$this->programm_date_id   	= $this->input->post('programm_date_id');	
-		$this->test_id    	= $this->input->post("test[$i]");
+		$this->user_id   			= $user_id;
+		$this->programm_type_id 	= $programm_type_id;
+		$this->programm_date_id   	= $programm_date_id;	
+		$this->test_id       		= $tests[$i];
+		$this->date_deleted 		= NULL;
 		$this->db->insert('users_programm_dates_tests_evaluations', $this);
 	}
 

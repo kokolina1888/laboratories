@@ -3,7 +3,6 @@
 	<h2>ДОБАВЕТЕ АПАРАТ</h2>
 	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator"><br/>
 
-
 	<a href="#add_device"><i class="fa fa-plus"></i>Нов апарат</a>
 	<a href="#add_calibrator"><i class="fa fa-tablet"></i>Нов калибратор</a>
 	<a href="#add_reagent"><i class="fa fa-flask"></i>Нов реактив</a><br/><br/><br/>

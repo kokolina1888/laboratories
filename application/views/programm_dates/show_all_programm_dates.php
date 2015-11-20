@@ -3,9 +3,7 @@
 <table border="1">
 	<?php 
 	$i=1;
-	/*echo "<pre>";
-	var_dump($all_programm_dates);
-	echo "</pre>";*/
+	
 	echo '<tr><td></td>';		
 		echo '<td>Цикъл</td>';
 		echo '<td>Номер на проба</td>';

@@ -15,9 +15,10 @@ class Home_user extends CI_Controller {
 			$session_data = $this->session->userdata('logged_in');
 			$data['username'] = $session_data['username'];
 
-			$data['dynamic_view'] = 'user/user';
+			$data['dynamic_view'] = 'user/home_user_view';
 			$data['title_user'] = 'потребител';
 			$this->load->view('templates/main_template_user', $data);
+		}
 			
 		else
 		{

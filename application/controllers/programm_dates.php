@@ -30,7 +30,7 @@ class Programm_dates extends CI_Controller {
 
 		if ($this->form_validation->run() === FALSE) 
 		{
-			$this->add_programm_dates_form();
+			$this->add_programm_date_form();
 			echo "Опитайте отново!";
 		} 
 		else 
@@ -47,7 +47,16 @@ class Programm_dates extends CI_Controller {
 		$this->load->library('form_validation');
 
 		$data['all_programm_types'] = $this->programm_dates_model->get_all_program_types();
-		$this->load->view('programm_dates/add_programm_dates_form', $data);
+
+		$data['dynamic_view'] = 'programm_dates/add_programm_date_form';
+
+		$data['title_admin'] = 'Администратор';
+
+		$this->load->view('templates/second_template_admin', $data);
+
+
+		
+		//$this->load->view('programm_dates/add_programm_date_form', $data);
 
 		
 	}//end of add_programm_dates_form
@@ -79,6 +88,7 @@ class Programm_dates extends CI_Controller {
 	}//end of update_programm_date
 
 	public function update_programm_date_form($programm_date_id)
+
 	{
 		
 		$data['programm_date_data'] = $this->programm_dates_model->get_programm_date($programm_date_id);
