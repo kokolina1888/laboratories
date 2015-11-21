@@ -1,82 +1,103 @@
-<?php 
-class Users extends CI_Controller {
+<?php if (! defined('BASEPATH')) exit ('No direct script access allowed');
+
+class User extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('users_model');
-	}
-
-	public function form()
-	{
-		$this->load->view('users/login_form');
-
-	}
-
-
-	public function login() 
-	{
-		$this->load->library('form_validation');
-		$this->form_validation->set_message('required', 'Полето %s е задължително');
-
-		/*$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[3]');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[3]');
-		$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|min_length[3]|matches[password]');*/
+		$this->load->model('user_model');
+		
+		$this->load->model('programm_dates_model');
+		$this->load->model('test_methods_model');
+		$this->load->model('units_model');
 
 		
-			$username = $this->input->post('username');
-			$password = $this->input->post('password');
-			echo $username;
-			echo $password;
+		$this->output->enable_profiler(TRUE);
+	}
+
+//STARTS THE PROCESS OF ADDING TEST VALUES IN DB BY SELECTING - FIRST PROGRAM TYPE
+	public function add_data_initial()
+	{
+		
+		$data['username'] = $this->session->userdata['logged_in']['username'];
+		$data['user_id'] = $this->session->userdata['logged_in']['user_id'];
+
+		$data['program_type'] = $this->programm_dates_model->get_all_programm_dates();		
+
+		//	make it dynamic
+		$data['dynamic_view'] = 'user/select_program_type';
+		$data['title_user'] = 'участник';
+
+		$this->load->view('templates/main_template_user', $data);
+		
+	}//end of add_data_initial
 
 
-			//setting the id of the loggedin user 
+	//CONTINUING THE PROCESS OF ADDING TEST VALUES IN DB BY SELECTING - SECOND PROGRAM DATE FOR THE SELECTED PROGRAM TYPE
 
-			/*$user_id = $this->user_model->login_user();*/
+	public function add_data_second()
+	{
+		$data['username'] = $this->session->userdata['logged_in']['username'];
+		$data['user_id'] = $this->session->userdata['logged_in']['user_id'];
 
+		$program_type_id = $this->input->post('program_type');
 
-			var_dump($user_id);
-			
+		var_dump($program_type_id);
 
-			if($user_id) {
+		$data['program_date'] = $this->programm_dates_model->get_programm_dates($program_type_id);		
 
-				$user_data = array(
-					'user_id' => $user_id,
-					'username'=> 'admin',
-					'logged_in'=> TRUE);
+		//	make it dynamic
+		$data['dynamic_view'] = 'user/select_program_date';
+		$data['title_user'] = 'участник';
 
-				$this->session->set_userdata($user_data);
-				$this->session->set_flashdata('login_success', 'You are now logged in');
+		$this->load->view('templates/main_template_user', $data);
+	
+	}
 
-			//redirect('index');
+	////CONTINUING/FINAL/ THE PROCESS OF ADDING TEST VALUES IN DB BY SELECTING - 
+	//TESTS FOR THE SELECTED PROGRAM DATE FOR THE SELECTED PROGRAM TYPE
 
-				$data['main_view'] = 'admin_home'; 
-				
-				$this->load->view('layouts/main', $data);
+	public function add_data_third()
+	{
+		
+		$user_id 				= $this->session->userdata['logged_in']['user_id'];
 
-			} else {
+		$program_type_id 		= $this->input->post('program_type');
 
+		$programm_date_id 		= $this->input->post('program_date');
 
-				$this->session->set_flashdata('login_failed', 'Sorry, you are not logged in');
-				redirect('home/index');
-			}
+		echo $user_id.'/'.$program_type_id.'/'.$programm_date_id;
 
+		$data['username'] 		= $this->session->userdata['logged_in']['username'];
+
+		$data['units']			= $this->units_model->get_all_units();
+
+		$data['test_methods'] 	= $this->test_methods_model->get_test_methods_byprogram($program_type_id);
+
+		$data['program_tests'] 	= $this->user_model->get_user_program($program_type_id, $programm_date_id, $user_id);		
+
+		//	make it dynamic
+		$data['dynamic_view'] 	= 'user/insert_test_values';
+		$data['title_user'] 	= 'участник';
+
+		$this->load->view('templates/main_template_user', $data);
 		
 
+	} //end add_data_third
 
-
-		}//end of login
-
-
-
-	/*public function logout()
+	public function add_data_final()
 	{
+		echo "Working!";
+	}
 
-		$this->session->sess_destroy();
-		redirect('home/index');
+	
 
-	}//end of logout
-}
 
-}*/
+	
+
+
+
+	
+
+
 }//end of User class

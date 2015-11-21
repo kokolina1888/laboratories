@@ -53,9 +53,10 @@
 
 	<div class="menu">
 		<ul>
-		    <li><a href="#">Начало</a></li>
+		    <li><a href="<?php echo base_url('home_user'); ?>">Начало</a></li>
 		    <li><a href="#">Въвеждане на данни</a></li>
 		    <li><a href="#">Преглед</a></li>
+		     <li><a href="#">Оценка</a></li>
 		    <li><a href="<?php echo base_url('home_user/logout'); ?>">Изход</a></li>
 		</ul>
 	</div>

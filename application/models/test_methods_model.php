@@ -52,6 +52,28 @@ class Test_methods_model extends CI_Model {
 		return $result;
 	}//end of
 
+	public function get_test_methods_byprogram($programm_type_id)
+	{
+		$this->db->select('*');
+		//SELECT * FROM `tests_methods` JOIN `tests` ON 
+		//`tests_methods`.`test_id` = `tests`.`test_id` 
+		//JOIN `methods` ON `tests_methods`.`method_id` = `methods`.`method_id` 
+		
+		$this->db->join('tests', 'tests.test_id = tests_methods.test_id');
+		$this->db->join('methods', 'methods.method_id = tests_methods.method_id');
+		$this->db->where('tests_methods.programm_type_id', $programm_type_id);
+		$this->db->where('tests_methods.date_deleted', NULL);
+
+		
+		$this->db->order_by('test', 'asc'); 
+		$q = $this->db->get('tests_methods');
+
+		$result = $q->result_array();
+
+		return $result;
+	}//end of
+
+
 	public function get_all_tests()
 	{
 		//SELECT * FROM `tests` join 

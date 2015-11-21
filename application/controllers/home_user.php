@@ -5,10 +5,15 @@ class Home_user extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->output->enable_profiler(TRUE);
 	}
 
 	public function index()
 	{
+
+		echo "<pre>";
+		var_dump($this->session->userdata);
+		echo "</pre>";
 
 		if ($this->session->userdata('logged_in')) 
 		{

@@ -220,7 +220,7 @@ class User_model extends CI_Model {
 		$this->db->join('tests', 'tests.test_id = users_programm_dates_tests_evaluations.test_id');
 		$this->db->join('programm_dates', 'programm_dates.programm_date_id = users_programm_dates_tests_evaluations.programm_date_id');
 		$this->db->join('programm_types', 'programm_types.programm_type_id = users_programm_dates_tests_evaluations.programm_type_id');
-
+		
 
 		$query = $this->db->get('users_programm_dates_tests_evaluations');
 

@@ -15,6 +15,7 @@ class Programm_dates_model extends CI_Model {
 		
 		$this->db->join('programm_types', 'programm_types.programm_type_id = programm_dates.programm_type_id');
 		$this->db->where('programm_dates.date_deleted', NULL);
+		$this->db->order_by('cicle', 'desc');
 		$q = $this->db->get('programm_dates');
 
 		$result = $q->result_array();
@@ -22,6 +23,26 @@ class Programm_dates_model extends CI_Model {
 		return $result;
 
 	}//end of get_all_programm_dates
+
+	public function get_programm_dates($program_type_id)
+	{
+	
+		$this->db->select('*');
+		
+		$this->db->join('programm_types', 'programm_types.programm_type_id = programm_dates.programm_type_id');
+		$this->db->where('programm_dates.date_deleted', NULL);
+		$this->db->where('programm_dates.programm_type_id', $program_type_id);
+
+		$this->db->order_by('cicle', 'asc');
+
+		$q = $this->db->get('programm_dates');
+
+		$result = $q->result_array();
+
+		return $result;
+
+	}//end of get_all_programm_dates
+
 
 	public function get_all_program_types()
 	{

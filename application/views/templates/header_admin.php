@@ -53,11 +53,13 @@
 
 		<div class="menu">
 			<ul>
-				<li><a href="<?php echo base_url('home_admin/logout'); ?>">Изход</a></li>
+				<li><a href="<?php echo base_url('home_admin'); ?>">Начало</a></li>
+				
 				<li><a href="<?php echo base_url('admin/messages'); ?>">Съобщения</a></li>
 				<li><a href="<?php echo base_url('admin/add'); ?>">Добави</a></li>
 				<li><a href="<?php echo base_url('admin/show')?>">Прегледай</a></li>
 				<li><a href="<?php echo base_url('admin/programs_requests')?>">Завки за програми</a></li>
+				<li><a href="<?php echo base_url('home_admin/logout'); ?>">Изход</a></li>
 
 			</ul>
 		</div>
