@@ -3,9 +3,7 @@
 echo "<div class='form'>";
 
 echo "<h2>Лаборатория ".$user_data['username']."</h2>";
-echo "<h3> Програма ". $additional_complex_info[0]['programm_type']."</h3>";
-
-
+echo "<h3> Програма ". $additional_complex_info[0]['programm_type']."</h3>"; 
 
 echo form_open('admin/add_aditional_complex_info');
 

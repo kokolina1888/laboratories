@@ -1,15 +1,14 @@
-
 <!---SECOND STEP OF USER ADDING DATA TO DB-->
-
-<div id="admin_add">
-
+<div class="form">
 	<h2><?php echo $username;?>, изберeте дата по програма <?php echo $program_date[0]['programm_type']?>, за която ще въвеждате данни</h2>
 
-	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator"><br/>
+	<p class="pretty_form">
+		<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator">
+	</p>
 
 	<?php echo form_open('user/add_data_third');?>
 
-	<div>
+	<p class="pretty_form">
 		<?php 	
 
 		//STORING THE PROGRAM TYPE ID
@@ -25,8 +24,8 @@
 		$pr_date_value = $this->input->post('program_date');
 		echo form_dropdown('program_date', $program_date_options, set_value('program_date', ( ( !empty($pr_date_value) ) ? "$pr_date_value" : 0 ) ));
 		?>
-	</div>
-	<div>
+	</p>
+	<p class="pretty_form">
 		<?php
 //SUBMIT BUTTON
 		$submit_button = array(
@@ -36,7 +35,7 @@
 
 		echo form_submit($submit_button);
 		?>
-	</div>
+	</p>
 	<?php
 
 	echo form_close();

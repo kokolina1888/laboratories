@@ -1,5 +1,5 @@
+<div class="form">
 <?php 
- $this->benchmark->mark('select_start');
 echo "<h1> лаборатория ".$username."</h1>";
 echo "<h3> програма " .$programm_type. "</h3>";
 echo "<h4>".$programm_date['cicle']."</h4>";
@@ -16,7 +16,7 @@ echo form_hidden('programm_date_id', $programm_date['programm_date_id']);
 
 
 echo form_label('Изберете тестове, с които ще участва лабораторията');
-echo "<p>";
+echo "<p class='pretty_form'>";
 
 $count_all_tests = count($tests);
 //echo $count_all_tests;
@@ -42,6 +42,6 @@ $complex_btn = array(
 echo form_submit($complex_btn);
 
 echo form_close();
-$this->benchmark->mark('select_end');
-		echo ' views '.$this->benchmark->elapsed_time('select_start', 'select_end');
-		echo ' Usage '.$this->benchmark->memory_usage('select_start', 'select_end');
+
+?>
+</div>

@@ -1,58 +1,52 @@
-<?php 
-
-echo "<pre>";
-var_dump($test_methods);
-echo "</pre>";
-echo "<pre>";
-var_dump($program_tests);
-echo "</pre>";
-/*echo "<pre>";
-var_dump($units);
-echo "</pre>";*/
-?>
-
 <!---FINAL STEP OF USER ADDING DATA TO DB-->
-
-<div id="admin_add">
+<div class="form">
 
 	<h2><?php echo $username;?>, въведете стойности по програма <?php echo $program_tests[0]['programm_type']; ?>, </h2>
 
-	<?php echo '<p> Цикъл '.$program_tests[0]['cicle'].'</p>';
-	echo 'Дата на въвеждане ' . date('d-m-Y');
+	<?php echo '<p class="pretty_form"> Цикъл '.$program_tests[0]['cicle'].'</p>';
+	echo '<p class="pretty_form"> Дата на въвеждане ' . date('d-m-Y').'</p>';
 
 
 	?>
+	
 
-	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator">
+	<p class="pretty_form">
+		<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator">
+	</p>
+	
+	<?php echo form_open('user/add_data_final/'.$program_tests[0]['programm_type_id'].'/'.$program_tests[0]['programm_date_id']);?>
 
-	<?php echo form_open('user/add_data_final');?>
+	
+	<table class="pretty_table">
+		<?php 
+		$number = 0;
+		echo form_hidden('programm_type_id', $program_tests[0]['programm_type_id']);
+		echo form_hidden('programm_date_id', $program_tests[0]['programm_date_id']);
 
-	<div>
-		<table border="1">
-			<tr>
-				<?php 
-				$number = 0;
 
-				foreach ($program_tests as $test) {
-					$number++;
-					echo '<td>'.$number.'</td>';
-					
-					echo '<td>'.$test['test'].'</td>';
+		foreach ($program_tests as $test) {
+
+			$number++;
+			echo '<tr><td class="pretty_table">'.$number.'</td>';
+
+			echo '<td class="pretty_table">'.$test['test'].'</td>';
+			echo form_hidden('test_id[]', $test['test_id']);
 
 					//RETRIEVES THE UNIT
-					foreach ($units as $value) {
-						if ($value['unit_id'] === $test['unit_id']) {
-							echo '<td>'.$value['unit'].'</td>';
-						}
+			foreach ($units as $value) {
+				if ($value['unit_id'] === $test['unit_id']) {
+					echo '<td class="pretty_table">'.$value['unit'].'</td>';
+				}
 					}//end of retrieving units
 
-					echo '<td>';
+					echo '<td class="pretty_table">';
 					$data_value = array(
-						'name' => 'value',	
-						'value' => set_value('value'),
+						'name' => 'test_value[]',	
+						'value' => set_value('test_value[]'),
 						'placeholder' => 'въведете стойността, която сте получили ...',			
 
 						);
+					echo form_error('test_value[]');
 					echo form_input($data_value);
 					echo '</td></tr>';		
 
@@ -60,44 +54,46 @@ echo "</pre>";*/
 					//$methods['method']
 
 					echo '<tr>';	
-					echo '<td></td>';
-					echo '<td>Изберете метод</td>';	
+					echo '<td class="pretty_table"></td>';
+					echo '<td class="pretty_table">Изберете метод</td>';	
 					echo '<td colspan="2">';
+					
 
-					foreach ($test_methods as $methods) {
-							if ($methods['test_id'] === $test['test_id']) {
-							$options[$methods['method_id']]=$methods['method'];
+					foreach ($test_methods as $key => $methods) {
+						if ($methods['test_id'] === $test['test_id']) {
+							$options[$methods['method_id']]=$methods['method'];		
 							
 						}
 					}
 
-					echo form_dropdown('methods', $options);
+					echo form_error('methods[]');
+					echo form_dropdown('methods[]', $options);
+					$options = NULL;
 
 
 					echo '</td>';
-
 					echo '</tr>';
 					
 				}
-
+				
 				?>
-			</tr>
-		</table>
-	</div>
-	<div>
-		<?php
+				
+			</table>
+
+			<p class="pretty_form">
+				<?php
 //SUBMIT BUTTON
-		$submit_button = array(
-			'name' => 'submit',
-			'value' => 'Запиши!'
-			);
+				$submit_button = array(
+					'name' => 'submit',
+					'value' => 'Запиши!'
+					);
 
-		echo form_submit($submit_button);
-		?>
-	</div>
-	<?php
+				echo form_submit($submit_button);
+				?>
+			</p>
+			<?php
 
-	echo form_close();
+			echo form_close();
 
-	?>
-</div>
+			?>
+		</div>

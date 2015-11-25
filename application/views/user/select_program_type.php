@@ -1,15 +1,16 @@
-
 <!---INITIAL STEP OF USER ADDING DATA TO DB-->
 
-<div id="admin_add">
+<div class="form">
 
 	<h2><?php echo $username;?>, изберeте програма, за която ще въвеждате данни</h2>
+	<p class="pretty_form">
 
-	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator"><br/>
+		<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator">
+	</p>
 
 	<?php echo form_open('user/add_data_second');?>
 
-	<div>
+	<p class="pretty_form">
 		<?php 	
 		
 
@@ -22,8 +23,8 @@
 		$program_value = $this->input->post('program_type');
 		echo form_dropdown('program_type', $program_options, set_value('program_type', ( ( !empty($program_value) ) ? "$program_value" : 0 ) ));
 		?>
-	</div>
-	<div>
+	</p>
+	<p class="pretty_form">
 		<?php
 //SUBMIT BUTTON
 		$submit_button = array(
@@ -33,7 +34,7 @@
 
 		echo form_submit($submit_button);
 		?>
-	</div>
+	</p>
 	<?php
 
 	echo form_close();

@@ -1,13 +1,11 @@
- <div id="add_program_date" class="modalDialog add add_program_date">
+ <div class="form">
  	<?php 
 
  	
 //by default CI uses post method, to use get method you should use html form
  	echo form_open('programm_dates/add_programm_dates');
  	?>
-
-
- 	<div>
+ 	<p class="pretty_form">
  		<?php 	
 
 	//SELECT PROGRAMM TYPE
@@ -17,11 +15,10 @@
  			$options[$value['programm_type_id']] = $value['programm_type'];	
 
  		}
- 		echo '<p>'.form_error('programm_type_id').'</p>';
  		echo form_dropdown('programm_type_id', $options, 0);
  		?>
- 	</div>
- 	<div>
+ 	</p>
+ 	<p class="pretty_form">
  		<?php 	
 //input type=text
  		echo form_label('Въведете цикъл');
@@ -32,11 +29,11 @@
  			'placeholder' => 'цикъл',			
 
  			);
- 		echo '<p>'.form_error('cicle').'</p>';
- 		echo '<p>'.form_input($data_cicle).'</p>';
+ 		
+ 		echo form_input($data_cicle);
  		?>
- 	</div>
- 	<div>
+ 	</p>
+ 	<p class="pretty_form">
  		<?php 	
 	//INSERT d%
 
@@ -49,10 +46,10 @@
 
  			);
  		echo form_error('probe_number');
- 		echo '<p>'.form_input($data_probe_number).'</p>';
+ 		echo form_input($data_probe_number);
  		?>
- 	</div>
- 	<div>
+ 	</p>
+ 	<p class="pretty_form">
  		<?php 	
 	//INSERT d%
 
@@ -65,10 +62,10 @@
 
  			);
  		echo form_error('date_analyse');
- 		echo '<p>'.form_input($data_date_analyse).'</p>';
+ 		echo form_input($data_date_analyse);
  		?>
- 	</div>
- 	<div>
+ 	</p>
+ 	<p class="pretty_form">
  		<?php 	
 //input type=text
 	//INSERT d%
@@ -83,10 +80,10 @@
 
  			);
  		echo form_error('date_final');
- 		echo '<p>'.form_input($data_date_final).'</p>';
+ 		echo  form_input($data_date_final);
  		?>
- 	</div>
- 	<div>
+ 	</p>
+ 	<p class="pretty_form">
  		<?php 
 //submit button
  		$test_btn = array(
@@ -96,7 +93,7 @@
 
  		echo form_submit($test_btn);
  		?>
- 	</div>
+ 	</p>
  	<?php
 
  	echo form_close();

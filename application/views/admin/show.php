@@ -1,9 +1,7 @@
 <div id="admin_add">
 
 	<h2>Прегледай</h2>
-	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator"><br/>
-
-	<!--ВИЖ КАК ДА ГИ КВЪРЖЕШ С MODALS-->
+	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator"><br/>	
 
 	<a href="<?php echo base_url('admin/choose');?>"><i class="fa fa-plus"></i>Заявки за програми</a>
 

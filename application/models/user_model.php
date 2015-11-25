@@ -206,6 +206,27 @@ class User_model extends CI_Model {
 
 	}
 
+	//GETS PROGRAM DATES FOR A USER
+
+	public function get_user_programdates($user_id, $program_type_id)
+	{
+		$this->db->select('*');
+		$this->db->where('users_programm_dates_tests_evaluations.user_id', $user_id);
+		$this->db->where('users_programm_dates_tests_evaluations.programm_type_id', $program_type_id);
+
+		$this->db->where('users_programm_dates_tests_evaluations.date_deleted', NULL);
+
+		$this->db->join('programm_dates', 'programm_dates.programm_date_id = users_programm_dates_tests_evaluations.programm_date_id');
+		$this->db->join('programm_types', 'programm_types.programm_type_id = users_programm_dates_tests_evaluations.programm_type_id');
+
+		$query = $this->db->get('users_programm_dates_tests_evaluations');
+
+		$q_result = $query->result_array();
+
+		return $q_result;
+
+	}
+
 //GETS PROGRAM BY DATE, TYPE AND USER ID
 
 	public function get_user_program($programm_type_id, $programm_date_id, $user_id)
@@ -239,11 +260,11 @@ public function final_update()
 
 {
 
-	$tests = $this->input->post('test');
-	$count_tests = count($tests);
+	$tests 				= $this->input->post('test');
+	$count_tests 		= count($tests);
 	$user_id = $this->input->post('user_id');
-	$programm_type_id = $this->input->post('programm_type_id');
-	$programm_date_id = $this->input->post('programm_date_id');
+	$programm_type_id 	= $this->input->post('programm_type_id');
+	$programm_date_id 	= $this->input->post('programm_date_id');
 
 		//SET DATE DELETED TO ALL RECORDS WITH USER_id, program_id, date_id 
 
@@ -274,6 +295,38 @@ public function final_update()
 
 	}//end of final_update
 
+	public function update_program_test_records()
+	{
+		$user_id 				= $this->session->userdata['logged_in']['user_id'];
+		$programm_type_id		= $this->input->post('programm_type_id');
+		$programm_date_id		= $this->input->post('programm_date_id');
+		$date_value_added		= $this->input->post('date_value_added');
+		$test_id 				= $this->input->post('test_id');
+
+		$count 					= count($test_id); 
+		$test_value 			= $this->input->post('test_value');
+		$method_id				= $this->input->post('methods');
+		
+
+		for ($i=0; $i < $count; $i++) 
+		{
+			$this->db->where('user_id', $user_id);
+			$this->db->where('programm_type_id', $programm_type_id);
+			$this->db->where('programm_date_id', $programm_date_id);
+
+			$this->db->where('date_deleted', NULL);
+			$this->db->where('test_id', $test_id[$i]);
+
+				$this->method_id 		= $method_id[$i];
+				$this->test_value 		= $test_value[$i];
+				$this->date_value_added 	= $date_value_added;
+
+				$this->db->update('users_programm_dates_tests_evaluations', $this);
+
+			}
+
+	}//end of update_program_test_records
+
 	public function delete_users_program($programm_type_id, $programm_date_id, $user_id)
 
 	{
@@ -290,8 +343,41 @@ public function final_update()
 		$this->db->update('users_programm_dates_tests_evaluations', $this);
 	}//end of delete_users_program
 
+	//INSERTS USERS VALUES IN THE LAST TABLE
+
+	public function add_data_final()
+	{
+		$user_id 			= $this->session->userdata['logged_in']['user_id'];
+		
+		$test_id 			= $this->input->post('test_id');
+		$count_tests 		= count($test_id);
+		
+		$programm_type_id 	= $this->input->post('programm_type_id');
+		$programm_date_id 	= $this->input->post('programm_date_id');
+		$test_values 		= $this->input->post('test_value');
+		$test_method 		= $this->input->post('methods');
+		$date 				= date('Y-m-d');
+
+		
+		for ($i=0; $i <$count_tests ; $i++) { 
+			$this->db->where('user_id', $user_id);
+			$this->db->where('programm_type_id', $programm_type_id);
+			$this->db->where('programm_date_id', $programm_date_id);
+			
+			
+			$this->db->where('test_id', $test_id[$i]);
 
 
+			$this->test_value 			= $test_values[$i];
+			$this->method_id 			= $test_method[$i];
+			$this->date_value_added 	= $date;
+
+			$this->db->update('users_programm_dates_tests_evaluations', $this);
+		}
+		
+
+
+	}//end of add_data_final()
 
 }//end of user_model
 

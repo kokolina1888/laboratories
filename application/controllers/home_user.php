@@ -11,10 +11,6 @@ class Home_user extends CI_Controller {
 	public function index()
 	{
 
-		echo "<pre>";
-		var_dump($this->session->userdata);
-		echo "</pre>";
-
 		if ($this->session->userdata('logged_in')) 
 		{
 			$session_data = $this->session->userdata('logged_in');
@@ -24,7 +20,7 @@ class Home_user extends CI_Controller {
 			$data['title_user'] = 'потребител';
 			$this->load->view('templates/main_template_user', $data);
 		}
-			
+		
 		else
 		{
 			//if no session, redirect to login page

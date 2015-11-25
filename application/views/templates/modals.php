@@ -17,7 +17,7 @@
           'placeholder' => 'Потебител',
           'class'       => 'username'
           );
-        echo form_input($data) . '<br/>';
+        echo form_input($data);
           // end title
 
         $data2 = array(
@@ -25,7 +25,7 @@
           'placeholder' => 'Парола',
           'class'       => 'password'
           );
-        echo form_password($data2) . '<br/>';
+        echo form_password($data2);
           // end title
 
         $data4 = array(
@@ -33,7 +33,7 @@
           'class'       => 'submit',
           'value'       => 'Вход',
           );
-        echo form_submit($data4);
+        echo '<p>'.form_submit($data4).'</p>';
           // end submit send
 
         echo form_close();
@@ -281,25 +281,24 @@
         echo anchor('programm_dates/add_programm_date_form', '<h2>Добави програма - дата</h2>', 'add_program_date');
         
         ?>
-        <img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator">
-
       </div>
-    </div> <!-- end program_date -->
+    </div>
 
+    <!--  .............. ADD NEW TEST .............. -->
 
-    <!--  .............. ADD METHOD TO TEST .............. -->
-
-    <div id="add_test_methods" class="modalDialog add test_methods">
+    <div id="add_new_test" class="modalDialog add add_program_date">
       <div>
         <a href="#close" title="Close" class="close">X</a>
         <?php
-        echo anchor('test_methods/add_test_method_form', '<h2>Метод за тест</h2>', 'add_program_date');
+        echo anchor('tests/add_tests_form', '<h2>Добави тест</h2>', 'add_program_date');
         
         ?>
         <img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator">
 
       </div>
-    </div> <!-- end method to test -->
+    </div> <!-- end new test -->
+
+
 
     <!--  .............. ADD NEW USER .............. -->
     <div id="add_new_user" class="modalDialog add add_new_user">
@@ -314,7 +313,6 @@
 //by default CI uses post method, to use get method you should use html form
         echo form_open('admin/add_new_user', $attributes);
         ?>
-
         <div>
           <?php   
           echo form_label('Въведете потребителско име');
@@ -388,6 +386,7 @@
           echo '<p>'.form_input($data_address).'</p>';
           ?>
         </div>
+        <div>
         <?php
 
 //submit button
@@ -400,12 +399,10 @@
         ?>
       </div>
       <?php
-
       echo form_close();
       ?>
-
     </div>
-  </div> <!-- end new user -->
+  </div> <!-- end add new user -->
 
 
 

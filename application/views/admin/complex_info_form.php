@@ -1,7 +1,7 @@
 <?php if (! defined('BASEPATH')) exit ('No direct script access allowed');?>
 
 
-<div id="admin_p_request">
+<div class="form">
 
 	<h2>Заявки за програми</h2>
 	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator">
@@ -9,6 +9,7 @@
 
 <?php	//THE PURPOSE OF THIS FORM IS TO CONNECT A USER TO A CERTAIN PROGRAMM TYPE
 
+	echo "<p class='pretty_form'>";
 	echo form_open('admin/add_complex_info');
 
 	//SELECT USER
@@ -17,18 +18,19 @@
 
 	foreach ($all_users as $key => $value) {
 	$options_user[$value['user_id']] = $value['username'];	
+	;
 
 }
 
 //VALUE SET
-echo "<p>";
+
 
 $user_value = $this->input->post('username');
 
 echo form_dropdown('username', $options_user, set_value('username', ( ( !empty($user_value) ) ? "$user_value" : 0 ) ));
 
 echo "</p>";
-
+echo "<p class='pretty_form'>";
 
 //SELECT PROGRAMM TYPE
 echo form_label('Изберете програма');
@@ -39,7 +41,7 @@ $options_programm_type[$value['programm_type_id']] = $value['programm_type'];
 
 
 //VALUE SET
-echo "<p>";
+
 
 $programm_programm_type = $this->input->post('programm_type');
 

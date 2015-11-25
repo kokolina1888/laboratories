@@ -1,16 +1,18 @@
-<div id="admin_add">
+<div class="form">
 
 	<h2>Избери дата и програма</h2>
 
-	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator"><br/>
+	
 
-	<div>
-
-		<?php 	
-		echo form_open('admin/show_users_bydates');
-		
+	<?php 	
+	echo form_open('admin/show_users_bydates');
+	?>
+	<p class="pretty_form">
+		<?php	
 
 	//SELECT PROGRAMM DATE
+		echo form_label('Изберете дата');
+
 		
 
 		foreach ($programm_dates as $programs) {
@@ -22,9 +24,8 @@
 		echo form_dropdown('program_date', $program_options, set_value('program_date', ( ( !empty($program_date_value) ) ? "$program_date_value" : 0 ) ));
 
 		?>
-
-	</div>
-	<div>
+	</p>
+	<p class="pretty_form">
 		<?php 	
 
 	//SELECT PROGRAMM TYPE
@@ -40,8 +41,8 @@
 		echo form_error('program_type');
 		echo form_dropdown('program_type', $pr_types_options, set_value('program_type', ( ( !empty($pr_types_value) ) ? "$pr_types_value" : 0 ) ));
 		?>
-	</div>
-	<div>
+	</p>
+	<p class="pretty_form">
 		<?php
 
 //submit button
@@ -52,7 +53,7 @@
 
 		echo form_submit($test_btn);
 		?>
-	</div>
+	</p>
 	<?php
 
 	echo form_close();

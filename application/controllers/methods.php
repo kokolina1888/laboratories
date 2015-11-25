@@ -34,8 +34,12 @@ class Methods extends CI_Controller {
 		else 
 		{
 			
-			$this->methods_model->add_method();
-			echo "Успешен запис!";
+			$this->methods_model->add_method();			
+			
+			$data['dynamic_view'] = 'methods/add';
+			$data['title_admin'] = 'Добави';
+			
+			$this->load->view('templates/main_template_admin', $data);
 		}
 
 		}//end of add_method
@@ -50,7 +54,7 @@ class Methods extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 
-	
+
 		$this->form_validation->set_rules('method', 'Методи за изследване', 'required|trim');
 		
 
@@ -82,4 +86,4 @@ class Methods extends CI_Controller {
 			$this->methods_model->delete_method($id);
 			$this->show_all_methods();
 		}
-}
+	}

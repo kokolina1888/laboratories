@@ -12,7 +12,7 @@
     </div>
   </a>
 
-  <a href="<?php echo base_url('user/?'); ?>">
+  <a href="<?php echo base_url('user/show_user_programs'); ?>">
    <!--трябва да избере програма-дата-->
     <div class="box">
       <span class="icons add_icon"></span>
@@ -20,12 +20,12 @@
       <p>Прегледайте въвежданите от вас данни и ако желаете - променете данните във все още активните програми</p>
     </div>
   </a>
-  <a href="<?php echo base_url('user/?')?>">
+  <a href="<?php echo base_url('user/error')?>">
     <div class="box devices">
       <span class="icons devices_icon"></span>
       <h2>Оценки</h2>
       <p>Прегледайте, оценките за участие по програма/дата или програма/тест</p>
     </div>
-  </a>
+  </a> 
  
 </div>

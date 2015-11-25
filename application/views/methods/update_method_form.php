@@ -1,45 +1,48 @@
-<?php 
-echo validation_errors();
-$attributes = array (
-	'id'	=>'methods_form',
-	'class'	=>'form-horizontal');
+<div class="form">
+	<?php 
+	echo validation_errors();
+	$attributes = array (
+		'id'	=>'methods_form',
+		);
 
 //by default CI uses post method, to use get method you should use html form
-echo form_open('methods/update_method', $attributes);
-?>
+	echo form_open('methods/update_method', $attributes);
+	?>
 
-<div class="form-group">
-	<?php 	
+	<p class="pretty_form">
+		<?php 	
 	//input type=hidden - Lets you generate a standard text input field.
-	echo form_hidden('method_id', $method_info['method_id']);
+		echo form_hidden('method_id', $method_info['method_id']);
 
 //input type=text
-	echo form_label('Променете метода за изследване');
+		echo form_label('Променете метода за изследване');
 
-	$data = array(
-		'class' => 'form-control',	
-		'name' => 'method',	
-		'value' => $method_info['method'],			
+		$data = array(
+			'class' => 'form-control',	
+			'name' => 'method',	
+			'value' => $method_info['method'],			
 
-		);
-	echo '<p>'.form_input($data).'</p>';
-	?>
-</div>
+			);
+		echo form_input($data);
+		?>
+	</p>
 
-<div class="form-group">
+	<p class="pretty_form">
 
-	<?php
-	
+		<?php
+		
 //submit button
-	$method_btn_enter = array(
-		'class' => 'btn btn-info', 
-		'name' => 'submit',
-		'value' => 'Въведи'
-		);
+		$method_btn_enter = array(
+			'class' => 'btn btn-info', 
+			'name' => 'submit',
+			'value' => 'Въведи'
+			);
 
-	echo form_submit($method_btn_enter);
+		echo form_submit($method_btn_enter);
+		?>
+	</p>
+	<?php
+
+	echo form_close();
 	?>
 </div>
-<?php
-
-echo form_close();

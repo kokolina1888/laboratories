@@ -58,8 +58,10 @@ class Test_methods extends CI_controller {
 	{
 		$data['tests_options'] = $this->test_methods_model->get_all_tests();
 		$data['methods_options'] = $this->test_methods_model->get_all_methods();
-		$this->load->library('form_validation');
-		$this->load->view('tests_methods/add_test_method_form', $data);
+		
+		$data['dynamic_view'] = 'tests_methods/add_test_method_form';
+		$data['title_admin'] = 'добавете тест/метод';
+		$this->load->view('templates/main_template_admin', $data);
 
 	}
 

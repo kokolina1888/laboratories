@@ -1,6 +1,6 @@
 <!-- MEANT TO BE EQUAL TO COMPLEX INFO FORM-->
 
-<div id="admin_p_request">
+<div class="form">
 
 	<h2>Заявки за програми</h2>
 	<img src="<?php echo base_url('assets/img/heading_sep.png');?>" alt="Separator">
