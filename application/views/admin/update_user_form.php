@@ -58,7 +58,7 @@ echo form_open('admin/update-user/'.$user_data['user_id'], $attributes);
 		'name' => 'lab_name',
 		'value' => $user_data['lab_name'],	
 		);
-	echo form_error('password');
+	echo form_error('lab_name');
 	echo '<p class="pretty_form">'.form_input($data_lab_name).'</p>';
 	?>
 </p>

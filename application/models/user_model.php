@@ -58,9 +58,18 @@ class User_model extends CI_Model {
 
 	}//end of get_user
 
-	public function update_user()
+	public function get_user_byusername($username)
 	{
-		$this->user_id   	= $this->input->post('user_id');
+		$this->db->where('username', $username);
+		$query = $this->db->get('users');
+		$result = $query->row_array();
+
+		return $result;
+	}
+
+	public function update_user($user_id)
+	{
+		$this->user_id   	= $user_id;
 		$this->username    	= $this->input->post('username');
 		$this->password	   	= $this->input->post('password'); 	
 		$this->lab_name    	= $this->input->post('lab_name');

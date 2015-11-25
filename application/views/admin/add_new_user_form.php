@@ -1,12 +1,15 @@
-<?php if (! defined('BASEPATH')) exit ('No direct script access allowed');
+<?php 
 $attributes = array (
 	'id'	=>'tests_form');
+?>
+<div class="form">
+<?php
 
 //by default CI uses post method, to use get method you should use html form
-echo form_open('admin/add_new_user', $attributes);
+echo form_open('admin/add-new-user', $attributes);
 ?>
 
-<div>
+<p class="pretty_form">
 	<?php 	
 	echo form_label('Въведете потребителско име');
 
@@ -17,10 +20,10 @@ echo form_open('admin/add_new_user', $attributes);
 
 		);
 	echo form_error('username');
-	echo '<p>'.form_input($data_username).'</p>';
+	echo '<p class="pretty_form">'.form_input($data_username).'</p>';
 	?>
-</div>
-<div>
+</p>
+<p class="pretty_form">
 	<?php 	
 
 	echo form_label('Въведете парола');
@@ -32,10 +35,10 @@ echo form_open('admin/add_new_user', $attributes);
 
 		);
 	echo form_error('password');
-	echo '<p>'.form_password($data_password).'</p>';
+	echo '<p class="pretty_form">'.form_password($data_password).'</p>';
 	?>
-</div>
-<div>
+</p>
+<p class="pretty_form">
 	<?php 	
 	echo form_label('Повторете паролата');
 
@@ -46,10 +49,10 @@ echo form_open('admin/add_new_user', $attributes);
 
 		);
 	echo form_error('password_confirm');
-	echo '<p>'.form_password($data_password_confirm).'</p>';
+	echo '<p class="pretty_form">'.form_password($data_password_confirm).'</p>';
 	?>
-</div>
-<div>
+</p>
+<p class="pretty_form">
 	<?php 	
 
 	echo form_label('Име на лабораторията');
@@ -60,11 +63,11 @@ echo form_open('admin/add_new_user', $attributes);
 		'placeholder' => 'Име на лабораторията',			
 
 		);
-	echo form_error('password');
-	echo '<p>'.form_input($data_lab_name).'</p>';
+	echo form_error('lab_name');
+	echo '<p class="pretty_form">'.form_input($data_lab_name).'</p>';
 	?>
-</div>
-<div>
+</p>
+<p class="pretty_form">
 	<?php 	
 
 	echo form_label('Адрес на лабораторията');
@@ -76,9 +79,10 @@ echo form_open('admin/add_new_user', $attributes);
 
 		);
 	echo form_error('address');
-	echo '<p>'.form_input($data_address).'</p>';
+	echo '<p class="pretty_form">'.form_input($data_address).'</p>';
 	?>
-</div>
+</p>
+<p class="pretty_form">
 <?php
 
 //submit button
@@ -89,7 +93,7 @@ $user_btn = array(
 
 echo form_submit($user_btn);
 ?>
-</div>
+</p>
 <?php
 
 echo form_close();

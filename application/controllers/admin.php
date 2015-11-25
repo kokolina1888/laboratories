@@ -5,6 +5,7 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('user_model', '', TRUE);
+		//$this->output->enable_profiler(TRUE);
 	}
 
 	public function index()
@@ -44,11 +45,28 @@ class Admin extends CI_Controller {
 	public function add_new_user()
 	{
 		$this->load->library('form_validation');
-		$this->form_validation->set_message('required', 'Полето %s е задължително');
+		//-------------?DO I NEED THIS?
+		$this->lang->load('form_validation_lang', 'bulgarian');
 
-		$this->form_validation->set_rules('username', 'потребителско име', 'required');
-		$this->form_validation->set_rules('password', 'парола', 'required');
-		$this->form_validation->set_rules('password_confirm', 'повторете паролата', 'required');
+
+		//------------SETTING CUSTOM ERROR MESSAGES
+
+		$this->form_validation->set_message('required', 'Полето е задължително');
+		$this->form_validation->set_message('min_length', 'Полето {field} трябва да е по-дълго от {param} знака');
+		$this->form_validation->set_message('max_length', 'Полето {field} не трябва да е по-дълго от 12 знака');
+		
+		$this->form_validation->set_message('matches', 'Полето {field} не съвпада с полето {param}');
+
+
+		//-----------STYLING THE ERROR MESSAGES
+		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+
+
+		//-----------SETTING CUSTOM FORM VALIDATION RULES
+
+		$this->form_validation->set_rules('username', 'потребителско име', 'trim|required|min_length[4]|max_length[12]');
+		$this->form_validation->set_rules('password', 'парола', 'trim|required|min_length[8]|matches[password_confirm]|md5');
+		$this->form_validation->set_rules('password_confirm', 'повторете паролата', 'trim|required');
 		$this->form_validation->set_rules('lab_name', 'Име на лабораторията', 'required');
 		$this->form_validation->set_rules('address', 'Адрес на лабораторията', 'required');
 		
@@ -57,13 +75,24 @@ class Admin extends CI_Controller {
 		if ($this->form_validation->run() === FALSE) 
 		{
 			$this->add_new_user_form();
-			echo "Опитайте отново!";
+		
 		} 
 		else 
 		{
 			
+			
 			$this->user_model->add_new_user();
-			echo "Успешен запис!";
+			$username = $this->input->post('username');
+			$data['user_info'] = $this->user_model->get_user_byusername($username);
+			$data['title_admin'] = 'админ';
+			
+			
+			$data['dynamic_view'] = 'admin/show_user_info';
+			
+			
+			$this->load->view('templates/main_template_admin', $data);
+	
+			
 			
 		}
 
@@ -72,19 +101,36 @@ class Admin extends CI_Controller {
 	public function add_new_user_form()
 	{
 		$this->load->library('form_validation');
-		$this->load->view('admin/add_new_user_form');
+		$data['title_admin'] = 'админ';
+		$data['dynamic_view']= 'admin/add_new_user_form';
+		$this->load->view('templates/main_template_admin', $data);
 	}//end of add_new_user_form
 
 
 	public function update_user($user_id)
 	{
 		$this->load->library('form_validation');
+		$this->lang->load('form_validation_lang', 'bulgarian');
 
-		$this->form_validation->set_message('required', 'Полето %s е задължително');
 
-		$this->form_validation->set_rules('username', 'потребителско име', 'required');
-		$this->form_validation->set_rules('password', 'парола', 'required');
-		$this->form_validation->set_rules('password_confirm', 'повторете паролата', 'required');
+		//------------SETTING CUSTOM ERROR MESSAGES
+
+		$this->form_validation->set_message('required', 'Полето е задължително');
+		$this->form_validation->set_message('min_length', 'Полето {field} трябва да е по-дълго от {param} знака');
+		$this->form_validation->set_message('max_length', 'Полето {field} не трябва да е по-дълго от 12 знака');
+		
+		$this->form_validation->set_message('matches', 'Полето {field} не съвпада с полето {param}');
+
+
+		//-----------STYLING THE ERROR MESSAGES
+		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+
+
+		//-----------SETTING CUSTOM FORM VALIDATION RULES
+
+		$this->form_validation->set_rules('username', 'потребителско име', 'trim|required|min_length[4]|max_length[12]');
+		$this->form_validation->set_rules('password', 'парола', 'trim|required|min_length[8]|matches[password_confirm]|md5');
+		$this->form_validation->set_rules('password_confirm', 'повторете паролата', 'trim|required');
 		$this->form_validation->set_rules('lab_name', 'Име на лабораторията', 'required');
 		$this->form_validation->set_rules('address', 'Адрес на лабораторията', 'required');
 		
@@ -92,14 +138,20 @@ class Admin extends CI_Controller {
 
 		if ($this->form_validation->run() === FALSE) 
 		{
+			
 			$this->update_user_form($user_id);
-			echo "Опитайте отново!";
+			
 		} 
 		else 
 		{
 			
-			$this->user_model->update_user();
+			$this->user_model->update_user($user_id);
 			echo "Успешен запис!";
+			$data['dynamic_view'] = 'admin/show_all_users';
+			$data['all_users'] = $this->user_model->get_all_users();
+
+			$data['title_admin'] = 'админ';
+			$this->load->view('templates/main_template_admin', $data);
 			
 		}
 
@@ -120,7 +172,7 @@ class Admin extends CI_Controller {
 	public function delete_user($user_id)
 	{
 		$data['user_info'] = $this->user_model->get_user($user_id);
-		$this->user_model->delete_user($id);
+		$this->user_model->delete_user($user_id);
 		$this->show_all_users();
 		}//end of delete user
 
