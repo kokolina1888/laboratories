@@ -1,5 +1,4 @@
-<?php if (! defined('BASEPATH')) exit ('No direct script access allowed');
-
+<?php
 class Admin extends CI_Controller {
 
 	public function __construct()
@@ -36,7 +35,9 @@ class Admin extends CI_Controller {
 	public function show_all_users()
 	{
 		$data['all_users'] = $this->user_model->get_all_users();
-		$this->load->view('admin/show_all_users', $data);
+		$data['dynamic_view'] = 'admin/show_all_users';
+		$data['title_admin'] = 'админ';
+		$this->load->view('templates/main_template_admin', $data);
 
 	}//end of show all users
 
@@ -75,7 +76,7 @@ class Admin extends CI_Controller {
 	}//end of add_new_user_form
 
 
-	public function update_user()
+	public function update_user($user_id)
 	{
 		$this->load->library('form_validation');
 
@@ -91,7 +92,7 @@ class Admin extends CI_Controller {
 
 		if ($this->form_validation->run() === FALSE) 
 		{
-			$this->update_user_form();
+			$this->update_user_form($user_id);
 			echo "Опитайте отново!";
 		} 
 		else 
@@ -108,8 +109,10 @@ class Admin extends CI_Controller {
 	{
 		
 		$data['user_data'] = $this->user_model->get_user($user_id);
+		$data['dynamic_view'] = 'admin\update_user_form';
+		$data['title_admin'] = 'админ';
 
-		$this->load->view('admin\update_user_form', $data);
+		$this->load->view('templates/main_template_admin', $data);
 
 	}//update_user_form
 
@@ -229,7 +232,7 @@ class Admin extends CI_Controller {
 	public function show()
 	{
 		$data['dynamic_view'] = 'admin/show';
-		$data['title_admin'] = 'Добави';
+		$data['title_admin'] = 'Прегледай';
 		$this->load->view('templates/main_template_admin', $data);
 	}
 

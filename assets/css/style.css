@@ -915,24 +915,26 @@ div.form h3,
   text-align: center;
 } 
 
-select, input[type=text] {
+select, input[type=text], input[type=password] {
   width: 300px;
   height: 30px;
   border-radius: 3px;
   border: 1px inset #5B5169;
   margin: 15px 0;
+  padding: 6px 12px;
+  font-size: 16px;
 }
 
 input[type=submit] {
-  height: 30px;
+
   color: #fff;
   background-color: #0F07B9;
   border: 1px outset #2A1D43;
   border-radius: 3px;
-  width: 100px;
-  height: 30px;
+  font-size: 16px;
   font-weight: bold;  
   margin: 15px 0;
+  padding: 6px 10px 6px 10px;
 }
 table.pretty_table, td.pretty_table {
   border: 2px solid #fff;
@@ -940,6 +942,14 @@ table.pretty_table, td.pretty_table {
 }
 table.pretty_table {
   width: 90%;
+
+}
+table.pretty_table_big {
+  width: 100%;
+  border: 2px solid #fff;
+  border-collapse: collapse;
+
+
 
 }
 td.pretty_table {
