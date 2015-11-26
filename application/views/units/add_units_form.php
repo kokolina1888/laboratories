@@ -1,5 +1,5 @@
+<div class="form">
 <?php 
-echo validation_errors();
 $attributes = array (
 	'id'	=>'units_form',
 	'class'	=>'form-horizontal');
@@ -8,10 +8,14 @@ $attributes = array (
 echo form_open('units/add_units', $attributes);
 ?>
 
-<div class="form-group">
+<p class="pretty_form">
 	<?php 	
 //input type=text
 	echo form_label('Въведете единици за измерване');
+	?>
+	</p>
+	
+	<?php
 
 	$data_units = array(
 		'class' => 'form-control',	
@@ -19,11 +23,11 @@ echo form_open('units/add_units', $attributes);
 		'placeholder' => 'единици',			
 
 		);
-	echo '<p>'.form_input($data_units).'</p>';
+	echo form_error('unit');
+	echo '<p class="pretty_form">'.form_input($data_units).'</p>';
 	?>
-</div>
 
-<div class="form-group">
+<p class="pretty_form">
 
 	<?php
 	
@@ -36,7 +40,9 @@ echo form_open('units/add_units', $attributes);
 
 	echo form_submit($unit_btn_enter);
 	?>
-</div>
+</p>
 <?php
 
 echo form_close();
+?>
+</div>

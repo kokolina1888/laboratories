@@ -13,9 +13,11 @@ class Units extends CI_Controller {
 	public function show_all_units() 
 	{
 		
-		$data['all_units'] = $this->units_model->get_all_units();
+		$data['all_units'] 		= $this->units_model->get_all_units();
+		$data['dynamic_view']	= 'units\show_all_units';
+		$data['title_admin']	= 'админ';
 
-		$this->load->view('units\show_all_units', $data);
+		$this->load->view('templates/main_template_admin', $data);
 
 	}//end show_all_units
 
@@ -24,19 +26,34 @@ class Units extends CI_Controller {
 	{
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('unit', 'Единици за измерване', 'required|trim');
+		$this->lang->load('form_validation_lang', 'bulgarian');
+
+
+		//------------SETTING CUSTOM ERROR MESSAGES
+
+		$this->form_validation->set_message('required', 'Не сте въвели стойност за единици');
+
+		$this->form_validation->set_rules('unit', 'Методи за изследване', 'trim|required');
 		
+		//-----------STYLING THE ERROR MESSAGES
+		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
 
 		if ($this->form_validation->run() === FALSE) 
 		{
 			$this->add_units_form();
-			echo "Опитайте отново!";
+			
 		} 
 		else 
 		{
 			
 			$this->units_model->add_units();
-			echo "Успешен запис!";
+			$data['all_units']	= $this->units_model->get_all_units();	
+			
+			$data['dynamic_view'] 	= 'units/show_all_units';
+			$data['title_admin'] 	= 'админ';
+			
+			$this->load->view('templates/main_template_admin', $data);
+
 			
 		}
 	}//end add_units
@@ -49,33 +66,52 @@ class Units extends CI_Controller {
 	public function add_units_form() 
 	{
 
-		$this->load->library('form_validation');
-		$this->load->view('units/add_units_form');
+		$data['all_units']	= $this->units_model->get_all_units();	
+
+		$data['dynamic_view'] 	= 'units/add_units_form';
+		$data['title_admin'] 	= 'админ';
+
+		$this->load->view('templates/main_template_admin', $data);
+
 
 	}//end add_unit_form
 
 	//UPDATE UNITS
 
-	public function update_units()
+	public function update_units($unit_id)
 	{
 
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('unit', 'Единици за измерване', 'required|trim|');
+		$this->lang->load('form_validation_lang', 'bulgarian');
+
+
+		//------------SETTING CUSTOM ERROR MESSAGES
+
+		$this->form_validation->set_message('required', 'Не сте въвели стойност за единици');
+
+		$this->form_validation->set_rules('unit', 'Методи за изследване', 'trim|required');
+		
+		//-----------STYLING THE ERROR MESSAGES
+		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+
 		
 
 		if ($this->form_validation->run() === FALSE) 
 		{
-			//TO DO load all units as a table, alphabetically
-			echo "Неуспешен запис! Моля, опитайте отново!";
-			/*$data['all_units'] = $this->units_model->get_all_units();
-			$this->load->view('units/show_all_units');*/
+			$this->update_units_form($unit_id);
+			
 		} 
 		else 
 		{
 			
-			$this->units_model->update_units();
-			echo "Успешен запис!";
+			$this->units_model->update_units($unit_id);
+			$data['all_units']	= $this->units_model->get_all_units();	
+			
+			$data['dynamic_view'] 	= 'units/show_all_units';
+			$data['title_admin'] 	= 'админ';
+			
+			$this->load->view('templates/main_template_admin', $data);
 			
 		}
 
@@ -86,8 +122,12 @@ class Units extends CI_Controller {
 	public function update_units_form($id)
 	{
 		$data['data_unit'] = $this->units_model->get_unit($id);
-		$this->load->view('units\update_unit_form', $data);
+		$data['dynamic_view'] 	= 'units/update_unit_form';
+		$data['title_admin'] 	= 'админ';
 
+		$this->load->view('templates/main_template_admin', $data);
+
+		
 	}//
 
 	

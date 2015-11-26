@@ -1,16 +1,29 @@
-<h2>Единици за измерване</h2>
+<div class="form">
+<p class="pretty_form">
+		<?php 
+		echo anchor('units/add-units', 'Добави нова единица', array('class'=>'add'));
+		?>
+	</p>
+	<h2>Единици за измерване</h2>
 
-<table border="1">
-	<?php 
-	$i=1;
-	foreach ($all_units as $units) {
-		echo '<tr>';
-		echo '<td>'.$i.'</td><td>'.$units['unit'].'</td><td>Промени</td><td>Изтрий</td>';
+
+	<table class="pretty_table_big">
+		<?php 
+		$i=1;
+		foreach ($all_units as $units) {
+			echo '<tr>';
+			echo '<td class="pretty_table">'.$i.'</td>';
+			echo '<td class="pretty_table">'.$units['unit'].'</td>';
+			echo '<td class="pretty_table">'.anchor('units/update-units-form/'.$units['unit_id'], 'Промени', array('class'=>'change')).'</td>';
+			echo '<td class="pretty_table">'.anchor('units/delete-units/'.$units['unit_id'], 'Изтрий', array('class'=>'delete')).'</td>';
 
 		//to do промени и изтрий като бутони и линкнати;
-		$i++;
-		echo '</tr>';
-		
-	}
+			$i++;
+			echo '</tr>';
 
-	echo '</table>';
+		}
+
+
+		?>
+	</table>
+</div>

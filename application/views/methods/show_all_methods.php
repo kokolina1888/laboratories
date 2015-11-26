@@ -1,20 +1,34 @@
-<div class="form">
-	<h2>Методи за изследване</h2>
+<div class="form_big">
 
-	<table class="pretty_table" ">
+	<p class="pretty_form">
+	<?php echo anchor('methods/add-method', 'Добави нов метод', array('class'=>'add'))?>
+		<h2>
+			Методи за изследване
+			
+		</h2>
+	</p2>
+	
+
+	<table class="pretty_table">
 		<?php 
 		$i=1;
 
+
 		foreach ($all_methods as $methods) {
-			echo '<tr><td>'.$i.'</td>';		
-			echo '<td>'.$methods['method'].'</td>';
-
-		//to do button промени and delete;
+			?>
+			<tr>
+				<td><?php echo $i; ?></td>
+				<td><?php echo $methods['method']; ?></td>
+				<td><?php echo anchor('methods/update-method-form/'.$methods['method_id'], 'Промени', array('class' => 'change'))?></td>
+				<td><?php echo anchor('methods/delete-method/'.$methods['method_id'], 'Изтрий', array('class' => 'delete'))?></td>
+			</tr>
+			<?php 
 			$i++;
-			echo '</td><td>Промени</td><td>Изтрий</td></tr>';
-
 		}
 
 		?>
 	</table>
+	<p class="pretty_form">
+	<?php echo anchor('methods/add-method', 'Добави нов метод', array('class'=>'add'))?>
+	</p>
 </div>

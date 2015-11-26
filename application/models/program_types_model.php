@@ -41,7 +41,7 @@ class Program_types_model extends CI_Model {
 	public function update_programm_types()
 	{
 		$this->programm_type    = $this->input->post('programm_types');
-		$this->programm_type_id      = $this->input->post('programm_type_id');
+		$this->programm_type_id      = $this->input->post('id');
 
 		$this->db->where('programm_type_id', $this->programm_type_id);
 		$this->db->update('programm_types', $this);

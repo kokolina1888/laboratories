@@ -3,13 +3,18 @@ echo validation_errors();
 $attributes = array (
 	'id'	=>'methods_form',
 	'class'	=>'form-horizontal');
-echo form_open('methods/add_method', $attributes);
+echo form_open('methods/add-method', $attributes);
 ?>
 
-<div class="form-group">
+<div class="form">
+<p class="pretty_form">
 	<?php 	
 //input type=text
 	echo form_label('Въведете методи за изследване');
+	?>
+	</p>
+	
+	<?php
 
 	$data_methods = array(
 		'class' => 'form-control',	
@@ -17,11 +22,9 @@ echo form_open('methods/add_method', $attributes);
 		'placeholder' => 'метод за изследване',			
 
 		);
-	echo '<p>'.form_input($data_methods).'</p>';
+	echo '<p class="pretty_form">'.form_input($data_methods).'</p>';
 	?>
-</div>
-
-<div class="form-group">
+<p class="pretty_form">
 
 	<?php
 	
@@ -34,7 +37,9 @@ echo form_open('methods/add_method', $attributes);
 
 	echo form_submit($method_btn_enter);
 	?>
-</div>
+</p>
 <?php
 
 echo form_close();
+?>
+</div>

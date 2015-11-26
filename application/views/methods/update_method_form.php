@@ -1,21 +1,27 @@
 <div class="form">
 	<?php 
-	echo validation_errors();
 	$attributes = array (
 		'id'	=>'methods_form',
 		);
 
 //by default CI uses post method, to use get method you should use html form
-	echo form_open('methods/update_method', $attributes);
+	echo form_open('methods/update-method/'.$method_info['method_id'], $attributes);
 	?>
 
-	<p class="pretty_form">
-		<?php 	
+	
+	<?php 	
 	//input type=hidden - Lets you generate a standard text input field.
-		echo form_hidden('method_id', $method_info['method_id']);
+	echo form_hidden('method_id', $method_info['method_id']);
+	?>
+	<p class="pretty_form">
+		<?php
 
 //input type=text
 		echo form_label('Променете метода за изследване');
+		?>
+	</p>
+	<p class="pretty_form">
+		<?php
 
 		$data = array(
 			'class' => 'form-control',	
@@ -23,10 +29,10 @@
 			'value' => $method_info['method'],			
 
 			);
+		echo form_error('method');
 		echo form_input($data);
 		?>
 	</p>
-
 	<p class="pretty_form">
 
 		<?php
@@ -45,4 +51,5 @@
 
 	echo form_close();
 	?>
+
 </div>
