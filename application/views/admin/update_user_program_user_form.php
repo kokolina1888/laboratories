@@ -8,7 +8,7 @@
 		echo '<h4>Променете тестовете за изследване</h4>';
 
 
-		echo form_open('admin/final_update');
+		echo form_open('admin/final-update/'.$update_program[0]['programm_type_id'].'/'.$update_program[0]['programm_date_id'].'/'.$update_program[0]['user_id']);
 
 		echo form_hidden('user_id', $update_program[0]['user_id']);
 		echo form_hidden('programm_type_id', $update_program[0]['programm_type_id']);

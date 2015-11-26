@@ -905,8 +905,9 @@ div.form {
 }
 div.form h2,
 div.form h3,
+div.form h4,
 div.form_big h2,
-.pretty_form, .pretty {
+.pretty_form, .pretty, p.pretty ul {
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
@@ -916,12 +917,18 @@ div.form_big h2,
   text-align: center;
 } 
 
+.beauty {
+ color: #200977;
+ font-weight: bold;
+ padding: 10px 5px 10px 30px;
+ margin: 15px 0;
+}
+
 select, input[type=text], input[type=password] {
   width: 300px;
-  height: 30px;
   border-radius: 3px;
   border: 1px inset #5B5169;
-  margin: 15px 0;
+  margin: 15px 5px;
   padding: 6px 12px;
   font-size: 16px;
 }
@@ -996,7 +1003,6 @@ a.pretty {
 }
 a.add{
  background-color: #F6E203;
-
 }
 /*------------STYLING ERRORS--------*/
 p.error {

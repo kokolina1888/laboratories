@@ -16,6 +16,6 @@
 	<a href="#add_program_date"><i class="fa fa-calendar-plus-o"></i>Програма - дата</a>
 	<a href="#add_new_test"><i class="fa fa-stethoscope"></i>Изследване (Тест)</a>
 	
-	<a href="<?php echo base_url('admin/show-all-users');?>"><i class="fa fa-user"></i>Потебител</a>
+	<a href="<?php echo base_url('admin/show-all-users');?>"><i class="fa fa-user"></i>Потребител</a>
 
 </div>

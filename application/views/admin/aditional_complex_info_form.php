@@ -1,11 +1,16 @@
-
-<?php if (! defined('BASEPATH')) exit ('No direct script access allowed');
+<?php
 echo "<div class='form'>";
+?>
+<p class="pretty_form">
+	<?php
 
-echo "<h2>Лаборатория ".$user_data['username']."</h2>";
-echo "<h3> Програма ". $additional_complex_info[0]['programm_type']."</h3>"; 
+	echo "<h2>Лаборатория ".$user_data['username']."</h2>";
+	echo "<h3> Програма ". $additional_complex_info[0]['programm_type']."</h3>"; 
+	?>
+</p>
 
-echo form_open('admin/add_aditional_complex_info');
+<?php
+echo form_open('admin/add-aditional-complex-info');
 
 //SELECT PROGRAMM DATE
 
@@ -34,6 +39,7 @@ echo form_dropdown('programm_date', $options_programm_dates, ( ( !empty($program
 
 echo "</p>";
 
+echo "<p class='pretty_form'>";
 //SUBMIT THE FORM
 
 $complex_btn = array(
@@ -43,14 +49,10 @@ $complex_btn = array(
 
 echo form_submit($complex_btn);
 
+echo "</p>";
+
 echo form_close();
 echo "</div>";
 
 
-
-//TO DO
-/*
-ДА ОБРАБОТЯ ТАЗИ ФОРМА ДА ВКАРАМ В БАЗАТА ДАТАТА ЕВЕНТУАЛНО?
-ИЛИ ПО-СКОРО ОТ КОНТРОЛЕРА ДА ОГРАНИЧА САМО ТЕСТОВЕТЕ ЗА ТАЗИ ПРОГРАМА И ТАЗИ ДАТА ДА МИ СЕ ПОЯВЯТ В СЛЕДВАЩАТА ФОРМА
-complex_info_form.php ТАМ ВЕЧЕ ЩЕ СЕ ВИЖДА ЛАБОРАТОРИЯ ПРОГРАМА, ДАТА, ЗА КОЯТО СТАВА ВЪПРОС И ЩЕ СЕ ИЗБИРАТ ТЕСТОВЕ. КАТО СЕ КОМПЛЕКТОВА ЦЯЛАТА ИНФО - ЗАПИС В БД!*/
 

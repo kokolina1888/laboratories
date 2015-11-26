@@ -26,7 +26,7 @@
 				<a href="#" class="fa fa-linkedin"></a>
 				<a href="#" class="fa fa-tumblr"></a>
 				<div class="div-button">
-					<a href="<?php echo base_url('index.php/home_admin/logout')?>" class="button">Изход</a>
+					<a href="<?php echo base_url('index.php/home-admin/logout')?>" class="button">Изход</a>
 
 				</div>
 			</span>
@@ -53,13 +53,13 @@
 
 		<div class="menu">
 			<ul>
-				<li><a href="<?php echo base_url('home_admin'); ?>">Начало</a></li>
+				<li><a href="<?php echo base_url('home-admin'); ?>">Начало</a></li>
 				
 				<li><a href="<?php echo base_url('admin/messages'); ?>">Съобщения</a></li>
 				<li><a href="<?php echo base_url('admin/add'); ?>">Добави</a></li>
 				<li><a href="<?php echo base_url('admin/show')?>">Прегледай</a></li>
-				<li><a href="<?php echo base_url('admin/programs_requests')?>">Завки за програми</a></li>
-				<li><a href="<?php echo base_url('home_admin/logout'); ?>">Изход</a></li>
+				<li><a href="<?php echo base_url('admin/programs-requests')?>">Завки за програми</a></li>
+				<li><a href="<?php echo base_url('home-admin/logout'); ?>">Изход</a></li>
 
 			</ul>
 		</div>

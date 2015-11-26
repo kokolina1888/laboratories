@@ -5,7 +5,8 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('user_model', '', TRUE);
-		//$this->output->enable_profiler(TRUE);
+		
+		$this->output->enable_profiler(TRUE);
 	}
 
 	public function index()
@@ -75,7 +76,7 @@ class Admin extends CI_Controller {
 		if ($this->form_validation->run() === FALSE) 
 		{
 			$this->add_new_user_form();
-		
+
 		} 
 		else 
 		{
@@ -91,7 +92,7 @@ class Admin extends CI_Controller {
 			
 			
 			$this->load->view('templates/main_template_admin', $data);
-	
+
 			
 			
 		}
@@ -244,8 +245,7 @@ class Admin extends CI_Controller {
 
 		$data['tests'] = $this->tests_model->get_program_tests($programm_type_id);
 
-		//$this->user_model->add_user_programm_additional_info($user_id, $programm_type_id);
-
+		
 		//LOADING VIEW
 		
 
@@ -265,17 +265,93 @@ class Admin extends CI_Controller {
 
 	}//end of add_aditional_complex_info
 
-	public function final_complex_info()
+	public function final_complex_info($programm_type_id, $programm_date_id, $user_id)
 	{
+
+		//FORM VALIDATION
+
+
+		$this->load->library('form_validation');
+		$this->lang->load('form_validation_lang', 'bulgarian');
+
+
+		//------------SETTING CUSTOM ERROR MESSAGES
+
+		$this->form_validation->set_message('required', '**Не сте избрали тестове!');
+		
+
+		//-----------STYLING THE ERROR MESSAGES
+		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+
+
+		//-----------SETTING CUSTOM FORM VALIDATION RULES
+
+		$this->form_validation->set_rules('test[]', 'тест', 'required');
+		
+		
+
+		if ($this->form_validation->run() === FALSE) 
+		{
+			
+			
+		//GET THE CORRESPONDING PROGRAMM DATE AND THE TESTS FOR THE CERTAIN PROGRAMM TYPE 
+		//FROM PROGRAMM DATES TABLE AND TESTS TABLE, LOAD THE MODEL - PROGRAMM_DATES_MODEL AND TESTS_MODEL
+
+			$this->load->model('programm_dates_model');
+
+		//RETRIEVES CERTAIN PROGRAMM DATE BY ITS ID
+
+			$data['programm_date'] =  $this->programm_dates_model->get_programm_date($programm_date_id);		
+
+			$this->load->model('tests_model');
+
+			$data['tests'] = $this->tests_model->get_program_tests($programm_type_id);
+
+
+		//LOADING VIEW
+
+
+			$data['user_id'] = $user_id;
+			$username = $this->user_model->get_user($user_id);
+			$data['username'] = $username['username'];
+			
+			$this->load->model('program_types_model');
+
+			$programm_type = $this->program_types_model->get_program_type($programm_type_id);
+			
+			$data['programm_type_id'] = $programm_type_id;
+			$data['programm_type'] = $programm_type['programm_type'];
+
+
+			$data['dynamic_view'] = 'admin/select_test';
+			$data['title_admin'] = 'Програми';
+
+
+			$this->load->view('templates/main_template_admin', $data);
+			
+		} //end of fail
+		else 
+		{
+			
 
 		//INSERTS IN THE DB ALL INFO GATHERED FOR THE PROGRAM REQUEST
 
-		$this->user_model->final_complex_info();
-		$data['dynamic_view'] = 'admin/admin_success_page';
-		$data['title_admin'] = 'Администратор';
+			$this->user_model->final_complex_info();
+
+			//GETTING INFO FOR THE SUCCESS PAGE
+
+			
+			$data['program_info'] = $this->user_model->get_user_program($programm_type_id, $programm_date_id, $user_id);
 
 
-		$this->load->view('templates/main_template_admin', $data);
+			//LOAD SUCCESS VIEW
+
+			$data['dynamic_view'] = 'admin/admin_success_page';
+			$data['title_admin'] = 'Администратор';
+
+
+			$this->load->view('templates/main_template_admin', $data);
+		}//end of sucess
 
 		
 		
@@ -397,18 +473,41 @@ class Admin extends CI_Controller {
 
 //UPDATES USER`S PROGRAM, ONLY UPDATES THE CHOSEN TESTS
 
-	public function final_update()
+	public function final_update($programm_type_id, $programm_date_id, $user_id)
 
 	{
 
 		$this->user_model->final_update();
-		//SEE LAB`S PROGRAM-DATE-TYPE-TEST
+
+		$data['program_info'] = $this->user_model->get_user_program($programm_type_id, $programm_date_id, $user_id);
+
+
+			//LOAD SUCCESS VIEW
+
+		$data['dynamic_view'] = 'admin/show_programs_byuser';
+		$data['title_admin'] = 'Администратор';
+
+
+		$this->load->view('templates/main_template_admin', $data);
+		
 	}
 
 	public function delete_user_program_user($programm_type_id, $programm_date_id, $user_id)
 	{
 		
 		$this->user_model->delete_users_program($programm_type_id, $programm_date_id, $user_id);
+
+		$data['user_info'] = $this->user_model->get_user($user_id);
+	
+
+		$data['user_programs'] = $this->user_model->get_user_programs($user_id);
+
+		$data['dynamic_view'] = 'admin/show_programs_byuser';
+		$data['title_admin'] = 'Администратор';
+
+
+		$this->load->view('templates/main_template_admin', $data);
+
 
 		//TO DO FIX GO TO WHERE????
 		//SEE LAB`S PROGRAM-DATE-TYPE-TEST
