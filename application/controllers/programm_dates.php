@@ -11,7 +11,12 @@ class Programm_dates extends CI_Controller {
 	public function show_all_programm_dates()
 	{
 		$data['all_programm_dates'] = $this->programm_dates_model->get_all_programm_dates();
-		$this->load->view('programm_dates/show_all_programm_dates', $data);
+
+		$data['title_admin'] 	= 'админ';
+		$data['dynamic_view'] 	= 'programm_dates/show_all_programm_dates';
+		
+		$this->load->view('templates/main_template_admin', $data);
+
 
 	}//end of show_all_programm_dates
 
@@ -25,19 +30,35 @@ class Programm_dates extends CI_Controller {
 		$this->form_validation->set_rules('date_analyse', 'Дата за анализ', 'required|trim');
 		$this->form_validation->set_rules('date_final', 'Краен срок', 'required|trim');
 
-		$this->form_validation->set_message('required', 'Полето %s е задължително');
+		$this->form_validation->set_message('required', 'Не сте попълнили %s ');
+
+		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+
 
 
 		if ($this->form_validation->run() === FALSE) 
 		{
-			$this->add_programm_date_form();
-			echo "Опитайте отново!";
+			$data['all_programm_types'] = $this->programm_dates_model->get_all_program_types();
+
+			$data['dynamic_view'] = 'programm_dates/add_programm_date_form';
+
+			$data['title_admin'] = 'Администратор';
+
+			$this->load->view('templates/main_template_admin', $data);
+			
 		} 
 		else 
 		{
 			
 			$this->programm_dates_model->add_programm_date();
-			echo "Успешен запис!";
+
+			$data['all_programm_dates'] = $this->programm_dates_model->get_all_programm_dates();
+
+			$data['title_admin'] 	= 'админ';
+			$data['dynamic_view'] 	= 'programm_dates/show_all_programm_dates';
+
+			$this->load->view('templates/main_template_admin', $data);
+			
 		}
 	}//end of add_programm_dates
 
@@ -52,7 +73,7 @@ class Programm_dates extends CI_Controller {
 
 		$data['title_admin'] = 'Администратор';
 
-		$this->load->view('templates/second_template_admin', $data);
+		$this->load->view('templates/main_template_admin', $data);
 
 
 		
@@ -61,8 +82,9 @@ class Programm_dates extends CI_Controller {
 		
 	}//end of add_programm_dates_form
 
-	public function update_programm_date()
+	public function update_programm_date($id)
 	{
+		
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('cicle', 'Цикъл', 'required|trim');
@@ -70,18 +92,33 @@ class Programm_dates extends CI_Controller {
 		$this->form_validation->set_rules('date_analyse', 'Дата за анализ', 'required|trim');
 		$this->form_validation->set_rules('date_final', 'Краен срок', 'required|trim');
 
-		$this->form_validation->set_message('required', 'Полето %s е задължително');
+		$this->form_validation->set_message('required', 'Не сте въвели новите данни за %s');
+
+		$this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+
 
 		if ($this->form_validation->run() === FALSE) 
 		{
-			$this->update_programm_date_form();
-			echo "Опитайте отново!";
+			$this->update_programm_date_form($id);
+
+			/*$data['programm_date_data'] = $this->programm_dates_model->get_programm_date($id);
+
+
+			$data['all_programm_types'] = $this->programm_dates_model->get_all_program_types();
+
+			$data['dynamic_view'] = 'programm_dates\update_programm_date_form';
+
+			$data['title_admin'] = 'Администратор';
+
+			$this->load->view('templates/main_template_admin', $data);*/
+
+			
 		} 
 		else 
 		{
 			
-			$this->programm_dates_model->update_programm_date();
-			echo "Успешен запис!";
+			$this->programm_dates_model->update_programm_date($id);
+			$this->show_all_programm_dates();
 		}
 
 
@@ -93,9 +130,13 @@ class Programm_dates extends CI_Controller {
 		
 		$data['programm_date_data'] = $this->programm_dates_model->get_programm_date($programm_date_id);
 
-
 		$data['all_programm_types'] = $this->programm_dates_model->get_all_program_types();
-		$this->load->view('programm_dates\update_programm_date_form', $data);
+
+		$data['dynamic_view'] = 'programm_dates\update_programm_date_form';
+
+		$data['title_admin'] = 'Администратор';
+
+		$this->load->view('templates/main_template_admin', $data);
 
 	}//update_programm_types_form
 

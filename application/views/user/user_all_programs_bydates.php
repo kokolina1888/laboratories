@@ -1,4 +1,4 @@
-<div class="form">
+<div class="form_bigger">
 	<p class="pretty_form">
 		<!--TO BE SEPARATED ON ACTIVE AND UNACTIVE PROGRAMS-->
 		<h2><?php echo $username;?>

@@ -1,7 +1,7 @@
 <?php
 echo "<pre>";
 echo "</pre>";
-echo "<div class='form'>";
+echo "<div class='form_bigger'>";
 echo "<p class='pretty_form'>Успешно записахте следните данни!!</p>";
 
 echo '<table class="pretty_table">';

@@ -1,4 +1,4 @@
-<div class="form_big">
+<div class="form_bigger">
 	<p class="pretty_form">
 		<table class="pretty_table_big">
 			<?php 

@@ -1,4 +1,4 @@
-<div class="form_big">
+<div class="form_bigger">
 	<p class="pretty_form">
 		<h2>Добавихте нов потребител</h2>
 		</p>

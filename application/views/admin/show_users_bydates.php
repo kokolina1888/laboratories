@@ -1,4 +1,4 @@
-<div class="form">
+<div class="form_bigger">
 	<h2>Лаборатории, участващи в</h2>
 	<h3>програма <?php echo $program_type['programm_type'];?></h3>
 

@@ -104,7 +104,8 @@ class Programm_types extends CI_Controller {
 		} 
 		else 
 		{
-			echo $id;;
+			echo $id;
+			
 			$this->program_types_model->update_programm_types($id);
 
 			$data['all_programm_types'] 	= $this->program_types_model->get_all_program_types();

@@ -1,60 +1,66 @@
-<?php 
-$attributes = array (
-	'id'	=>'add_tests_methods_form',
-	'class'	=>'form-horizontal');
+<div class="form">
+	<?php 
+	$attributes = array (
+		'id'	=>'add_tests_methods_form',
+		'class'	=>'form-horizontal');
 
 //by default CI uses post method, to use get method you should use html form
-echo form_open('test_methods/update_test_method', $attributes);
-?>
+	echo form_open('test_methods/update_test_method/'.$test_method['test_method_id'], $attributes);
+	?>
+	<p class="pretty_form">
 
-<div class="form-group">
-	<?php 
-	echo form_hidden('test_method_id', $test_method['test_method_id']);
-	
-	echo form_label('Изберете нов метод за този тест');
+		<?php 
+		echo form_hidden('test_method_id', $test_method['test_method_id']);
+		
+		echo form_label('Изберете нов метод за този тест');
+		?>
+	</p>
 
-	echo '<p>'.$test_method['test'].'</p>';
+	<?php
+
+	echo '<p class="pretty_form">'.$test_method['test'].'</p>';
 	echo form_hidden('test', $test_method['test_id']);
 
-//echo "<pre>";
-//var_dump($test_method);
-//echo "</pre>";
-	
-	
+
 	?>
 	
-</div>
-<div class="form-group">
+	<p class="pretty_form">
 
-	<?php 	
+		<?php 	
 //
 	//SELECT PROGRAMM TYPE
-	echo form_label('Изберете нов метод');
+		echo form_label('Изберете нов метод');
+		?>
+	</p>
+	<p class="pretty_form">
+		<?php
 
 	//var_dump($all_units);
-	foreach ($all_methods as $methods) {
-		$m_options[$methods['method_id']] = $methods['method'];
-	}
+		foreach ($all_methods as $methods) {
+			$m_options[$methods['method_id']] = $methods['method'];
+		}
 
 			//$method_value = $this->input->post('method');
 
-	echo '<p>'.form_error('method').'</p>';
-	echo form_dropdown('method', $m_options, $test_method['method_id']);
-	?>
-</div>
-<div class="form-group">
-	<?php
+		echo form_dropdown('method', $m_options, $test_method['method_id']);
+		?>
+	</p>
+	<p class="pretty_form">
+		<?php
 
 //submit button
-	$test_btn = array(
-		'class' => 'btn btn-info', 
-		'name' => 'submit',
-		'value' => 'Въведи'
-		);
+		$test_btn = array(
+			'class' => 'btn btn-info', 
+			'name' => 'submit',
+			'value' => 'Въведи'
+			);
 
-	echo form_submit($test_btn);
+		echo form_submit($test_btn);
+		?>
+	</p>
+	<?php
+
+	echo form_close();
 	?>
+	<?php echo anchor('methods/add-method', 'Добави нов метод', array('class'=>'add')) ?>
 </div>
-<?php
-
-echo form_close();

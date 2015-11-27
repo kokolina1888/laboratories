@@ -1,7 +1,9 @@
-<div class="form_big">
+<div class="form_bigger">
 
 	<p class="pretty_form">
 	<?php echo anchor('methods/add-method', 'Добави нов метод', array('class'=>'add'))?>
+	<?php echo anchor('test-methods/add-test-method', 'Добави метод/тест', array('class'=>'pretty'))?>
+
 		<h2>
 			Методи за изследване
 			

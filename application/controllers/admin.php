@@ -479,7 +479,8 @@ class Admin extends CI_Controller {
 
 		$this->user_model->final_update();
 
-		$data['program_info'] = $this->user_model->get_user_program($programm_type_id, $programm_date_id, $user_id);
+		$data['program_info'] 	= $this->user_model->get_user_program($programm_type_id, $programm_date_id, $user_id);
+		$data['user_info'] 		= $this->user_model->get_user($user_id);
 
 
 			//LOAD SUCCESS VIEW
@@ -500,7 +501,7 @@ class Admin extends CI_Controller {
 		$data['user_info'] = $this->user_model->get_user($user_id);
 	
 
-		$data['user_programs'] = $this->user_model->get_user_programs($user_id);
+		$data['program_info'] = $this->user_model->get_user_programs($user_id);
 
 		$data['dynamic_view'] = 'admin/show_programs_byuser';
 		$data['title_admin'] = 'Администратор';

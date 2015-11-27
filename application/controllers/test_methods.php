@@ -14,8 +14,11 @@ class Test_methods extends CI_controller {
 	{
 
 		$data['all_tests_methods'] = $this->test_methods_model->get_all_test_methods();
+		$data['title_admin'] 	= 'админ';
+		$data['dynamic_view'] 	= 'tests_methods/show_all_tests_methods';
+		
+		$this->load->view('templates/main_template_admin', $data);
 
-		$this->load->view('tests_methods/show_all_tests_methods', $data);
 
 	}//end of show_all_test_methods
 
@@ -42,13 +45,13 @@ class Test_methods extends CI_controller {
 		if ($this->form_validation->run() === FALSE) 
 		{
 			$this->add_test_method_form();
-			echo "Опитайте отново!";
+			
 		} 
 		else 
 		{
 			
 			$this->test_methods_model->add_test_method();
-			echo "Успешен запис!";
+			$this->show_all_tests_methods();
 			
 		}
 
@@ -71,11 +74,16 @@ class Test_methods extends CI_controller {
 		$data['all_methods'] = $this->test_methods_model->get_all_methods();
 		$data['test_method'] = $this->test_methods_model->get_test_method($test_method_id);
 
-		$this->load->view('tests_methods\update_test_method_form', $data);		
 
+		$data['dynamic_view'] = 'tests_methods/update_test_method_form';
+		$data['title_admin'] = 'променете тест/метод';
+		$this->load->view('templates/main_template_admin', $data);
+
+
+		
 	}//end of add_test_method
 
-	public function update_test_method()
+	public function update_test_method($test_method_id)
 	{
 
 		$this->load->library('form_validation');
@@ -86,14 +94,15 @@ class Test_methods extends CI_controller {
 
 		if ($this->form_validation->run() === FALSE) 
 		{
-			$this->update_test_method_form();
-			echo "Опитайте отново!";
+			$this->update_test_method_form($test_method_id);
+			
 		} 
 		else 
 		{
 			
-			$this->test_methods_model->update_test_method();
-			echo "Успешен запис!";
+			$this->test_methods_model->update_test_method($test_method_id);
+			$this->show_all_tests_methods();
+			
 			
 		}
 

@@ -1,4 +1,4 @@
-<div class="form">
+<div class="form_big">
 <p class="pretty_form">
 		<?php 
 		echo anchor('units/add-units', 'Добави нова единица', array('class'=>'add'));

@@ -907,7 +907,8 @@ div.form h2,
 div.form h3,
 div.form h4,
 div.form_big h2,
-.pretty_form, .pretty {
+.pretty_form, .pretty,
+p.pretty_form h2 {
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
@@ -954,6 +955,7 @@ table.pretty_table  {
 td {
   border: 2px solid #fff;
   padding: 8px;
+  height: 35px;
 
 }
 
@@ -961,7 +963,18 @@ td {
 div.form_big {
   background: rgba(27, 75, 230, 0.5);
   width: 800px;
-  height: 100%;
+ 
+  padding: 50px 50px;
+  margin: 0 auto;
+  border: 3px inset #C3B8DD;
+  border-radius: 6px;
+  position: relative;
+  top: -180px;
+}
+div.form_bigger {
+  background: rgba(27, 75, 230, 0.5);
+  width: 1000px;
+ 
   padding: 50px 50px;
   margin: 0 auto;
   border: 3px inset #C3B8DD;
@@ -970,6 +983,7 @@ div.form_big {
   top: -180px;
 
 }
+
 
 table.pretty_table_big {
   width: 100%;
